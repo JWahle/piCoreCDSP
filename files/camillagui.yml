@@ -1,0 +1,16 @@
+---
+camilla_host: "127.0.0.1"
+camilla_port: 1234
+port: 5000
+config_dir: "/mnt/mmcblk0p2/tce/camilladsp/configs"
+coeff_dir: "/mnt/mmcblk0p2/tce/camilladsp/coeffs"
+default_config: "/mnt/mmcblk0p2/tce/camilladsp/default_config.yml"
+active_config: "/mnt/mmcblk0p2/tce/camilladsp/active_config"
+active_config_txt: "/mnt/mmcblk0p2/tce/camilladsp/active_config.txt"
+log_file: "/var/log/camilladsp.log"
+update_config_symlink: true
+update_config_txt: false
+on_set_active_config: null
+on_get_active_config: null
+supported_capture_types: ["Stdin"]
+supported_playback_types: ["Alsa"]
