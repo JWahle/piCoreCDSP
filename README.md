@@ -28,4 +28,12 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
        - `channels`: a supported channel count for the DAC
        - `sampleformat`: a supported sample format for the DAC. (Only important, when NOT using a `plughw:` device)
    - Hit `Apply and save`
-   - You should see channel meters and `State: RUNNING` on the left 
+   - You should see channel meters and `State: RUNNING` on the left
+
+# Implementation
+
+The `install_cdsp.sh` script downloads the following projects and runs them with convenient default settings:
+- https://github.com/scripple/alsa_cdsp
+- https://github.com/HEnquist/camilladsp
+- https://github.com/HEnquist/camillagui-backend
+- additional configuration files are located in the `files` folder
