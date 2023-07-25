@@ -32,7 +32,7 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
 
 # Implementation
 
-The `install_cdsp.sh` script downloads the following projects and runs them with convenient default settings:
+The `install_cdsp.sh` script downloads the following projects including dependencies and runs them with convenient default settings:
 - https://github.com/scripple/alsa_cdsp
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
