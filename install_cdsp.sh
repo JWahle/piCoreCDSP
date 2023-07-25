@@ -40,7 +40,8 @@ tce-load -wi python3.8 python3.8-pip
 mkdir /usr/local/camillagui
 cd /usr/local/camillagui
 python3 -m venv environment
-(tr -d '\r' < environment/bin/activate) > environment/bin/activate # This is required to run the activate script. See https://stackoverflow.com/a/44446239
+(tr -d '\r' < environment/bin/activate) > environment/bin/activate_new # Create fixed version of the activate script. See https://stackoverflow.com/a/44446239
+mv -f environment/bin/activate_new environment/bin/activate
 source environment/bin/activate # activate custom python environment
 pip install websocket_client aiohttp jsonschema setuptools
 pip install git+https://github.com/HEnquist/pycamilladsp.git@v1.0.0
@@ -52,10 +53,10 @@ rm -f camillagui.zip
 rm -f config/camillagui.yml
 wget -P config https://github.com/JWahle/piCoreCDSP/raw/main/files/camillagui.yml
 echo usr/local/camillagui >> /opt/.filetool.lst
-printf "#!/bin/sh\n\nsource /usr/local/camillagui/environment/bin/activate\npython3 /usr/local/camillagui/main.py" > camillagui.sh
+printf "#!/bin/sh\n\nsource /usr/local/camillagui/environment/bin/activate\npython3 /usr/local/camillagui/main.py > /tmp/camillagui.log 2>&1" > camillagui.sh
 chmod a+x camillagui.sh
 
-sudo sh -c 'echo "sudo -u tc /usr/local/camillagui/camillagui.sh" >> /usr/local/etc/init.d/pcp_startup.sh'
+sudo sh -c 'echo "sudo -u tc /usr/local/camillagui/camillagui.sh &" >> /usr/local/etc/init.d/pcp_startup.sh'
 
 ### Save Changes
 
