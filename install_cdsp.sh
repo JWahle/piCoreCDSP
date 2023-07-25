@@ -41,10 +41,11 @@ mkdir /usr/local/camillagui
 cd /usr/local/camillagui
 python3 -m venv environment
 (tr -d '\r' < environment/bin/activate) > environment/bin/activate # This is required to run the activate script. See https://stackoverflow.com/a/44446239
-source environment/bin/activate
+source environment/bin/activate # activate custom python environment
 pip install websocket_client aiohttp jsonschema setuptools
 pip install git+https://github.com/HEnquist/pycamilladsp.git@v1.0.0
 pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v1.0.2
+deactivate # deactivate custom python environment
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v1.0.1/camillagui.zip
 unzip camillagui.zip
 rm -f camillagui.zip
