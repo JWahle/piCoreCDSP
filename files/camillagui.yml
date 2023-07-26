@@ -7,7 +7,7 @@ coeff_dir: "/mnt/mmcblk0p2/tce/camilladsp/coeffs"
 default_config: "/mnt/mmcblk0p2/tce/camilladsp/default_config.yml"
 active_config: "/mnt/mmcblk0p2/tce/camilladsp/active_config"
 active_config_txt: "/mnt/mmcblk0p2/tce/camilladsp/active_config.txt"
-log_file: "/var/log/camilladsp.log"
+log_file: "/tmp/camilladsp.log"
 update_config_symlink: true
 update_config_txt: false
 on_set_active_config: null
