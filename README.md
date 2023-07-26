@@ -19,7 +19,7 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
 4. Open CamillaGUI in the browser:
    - will be running on port 5000 of piCorePlayer.
      Usually can be opened with `pcp.local:5000` or `<IP of your piCorePlayer>:5000`
-   - under `Playback device` enter the settings for your DAC
+   - under `Playback device` enter the settings for your DAC (by default, the Raspi headphone output is used)
      - These HAVE TO BE CORRECT, otherwise CamillaDSP will not start!
        - `device`: The Alsa device name of the DAC
          - a list of available devices can be found in `Squeezelite settings > Output setting`
