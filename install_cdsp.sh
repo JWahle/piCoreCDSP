@@ -1,16 +1,11 @@
 #!/bin/sh -v
 
-### Install CamillaDSP
+### Create CamillaDSP config folders
 
 cd /mnt/mmcblk0p2/tce
 mkdir camilladsp
 mkdir camilladsp/configs
 mkdir camilladsp/coeffs
-
-cd /opt
-wget https://github.com/HEnquist/camilladsp/releases/download/v1.0.3/camilladsp-linux-aarch64.tar.gz
-tar -xvf camilladsp-linux-aarch64.tar.gz
-rm -f camilladsp-linux-aarch64.tar.gz
 
 ### Download default config
 
@@ -29,7 +24,6 @@ make
 sudo make install
 cd /tmp
 rm -rf alsa_cdsp/
-echo usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so >> /opt/.filetool.lst
 cd /tmp
 wget https://github.com/JWahle/piCoreCDSP/raw/main/files/camilladsp.conf
 cat camilladsp.conf >> /etc/asound.conf
@@ -52,11 +46,31 @@ unzip camillagui.zip
 rm -f camillagui.zip
 rm -f config/camillagui.yml
 wget -P config https://github.com/JWahle/piCoreCDSP/raw/main/files/camillagui.yml
-echo usr/local/camillagui >> /opt/.filetool.lst
 printf "#!/bin/sh\n\nsource /usr/local/camillagui/environment/bin/activate\npython3 /usr/local/camillagui/main.py > /tmp/camillagui.log 2>&1" > camillagui.sh
 chmod a+x camillagui.sh
 
 sudo sh -c 'echo "sudo -u tc /usr/local/camillagui/camillagui.sh &" >> /usr/local/etc/init.d/pcp_startup.sh'
+
+### Create and install piCoreCDSP.tcz
+tce-load -wi squashfs-tools
+
+mkdir -p /tmp/piCoreCDSP/usr/local/
+cd /tmp/piCoreCDSP/usr/local/
+
+mkdir -p lib/alsa-lib/
+cp /usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so ./lib/alsa-lib/libasound_module_pcm_cdsp.so
+
+sudo wget https://github.com/HEnquist/camilladsp/releases/download/v1.0.3/camilladsp-linux-aarch64.tar.gz
+tar -xvf camilladsp-linux-aarch64.tar.gz
+rm -f camilladsp-linux-aarch64.tar.gz
+
+sudo cp -a /usr/local/camillagui .
+
+cd /tmp
+mksquashfs piCoreCDSP piCoreCDSP.tcz
+mv piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
+cd /etc/sysconfig/tcedir
+echo piCoreCDSP.tcz >> onboot.lst
 
 ### Save Changes
 
