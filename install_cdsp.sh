@@ -30,7 +30,7 @@ cat camilladsp.conf >> /etc/asound.conf
 
 ### Install CamillaGUI
 
-tce-load -wi python3.8 python3.8-pip
+tce-load -wil python3.8-pip
 mkdir /usr/local/camillagui
 cd /usr/local/camillagui
 python3 -m venv environment
@@ -69,6 +69,7 @@ sudo cp -a /usr/local/camillagui .
 cd /tmp
 mksquashfs piCoreCDSP piCoreCDSP.tcz
 mv piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
+echo "python3.8-pip.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep
 cd /etc/sysconfig/tcedir
 echo piCoreCDSP.tcz >> onboot.lst
 
