@@ -28,6 +28,11 @@ cd /tmp
 wget https://github.com/JWahle/piCoreCDSP/raw/main/files/camilladsp.conf
 cat camilladsp.conf >> /etc/asound.conf
 
+### Set Squeezelite and Shairport output to camilladsp
+
+sed 's/^OUTPUT=.*/OUTPUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.cfg
+sed 's/^SHAIRPORT_OUT=.*/SHAIRPORT_OUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.cfg
+
 ### Install CamillaGUI
 
 tce-load -wil python3.8

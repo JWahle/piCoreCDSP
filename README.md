@@ -13,10 +13,7 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
      - usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
      - [How to find the IP adress of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/) 
    - run `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
-3. In piCorePlayer UI set `camilladsp` as output sound device:
-   - in `Squeezelite settings > Output setting`
-   - in `Tweaks > Audio tweaks > Shairport-sync > Configure` (Only required, if you want to use Shairport-sync)
-4. Open CamillaGUI in the browser:
+3. Open CamillaGUI in the browser:
    - will be running on port 5000 of piCorePlayer.
      Usually can be opened with `pcp.local:5000` or `<IP of your piCorePlayer>:5000`
    - under `Playback device` enter the settings for your DAC (by default, the Raspi headphone output is used)
