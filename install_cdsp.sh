@@ -17,7 +17,7 @@ ln -s configs/Headphones.yml active_config
 ### Install ALSA CDSP
 
 cd /tmp
-tce-load -wi git make gcc compiletc libasound-dev
+tce-load -wil -t /tmp git compiletc libasound-dev # Downloads to /tmp/optional and loads extensions temporarily
 git clone https://github.com/scripple/alsa_cdsp.git
 cd /tmp/alsa_cdsp
 make
@@ -52,7 +52,7 @@ chmod a+x camillagui.sh
 sudo sh -c 'echo "sudo -u tc /usr/local/camillagui/camillagui.sh &" >> /usr/local/etc/init.d/pcp_startup.sh'
 
 ### Create and install piCoreCDSP.tcz
-tce-load -wi squashfs-tools
+tce-load -wil -t /tmp squashfs-tools # Downloads to /tmp/optional and loads extension temporarily
 
 mkdir -p /tmp/piCoreCDSP/usr/local/
 cd /tmp/piCoreCDSP/usr/local/
