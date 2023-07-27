@@ -7,7 +7,7 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
 
 1. Increase piCorePlayer SD Card size to at least 200MB
    - in `Main Page > Additional functions > Resize FS`
-   - select `200 MB` or one of the larger options (preferably `500 MB`)
+   - select `200 MB` or one of the larger options
 2. Run `install_cdsp.sh` on piCorePlayer:
    - SSH onto the piCorePlayer
      - usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
