@@ -52,29 +52,35 @@ unzip camillagui.zip
 rm -f camillagui.zip
 rm -f config/camillagui.yml
 wget -P config https://github.com/JWahle/piCoreCDSP/raw/main/files/camillagui.yml
-printf "#!/bin/sh\n\nsource /usr/local/camillagui/environment/bin/activate\npython3 /usr/local/camillagui/main.py > /tmp/camillagui.log 2>&1" > camillagui.sh
-chmod a+x camillagui.sh
-
-sudo sh -c 'echo "sudo -u tc /usr/local/camillagui/camillagui.sh &" >> /usr/local/etc/init.d/pcp_startup.sh'
 
 ### Create and install piCoreCDSP.tcz
-tce-load -wil -t /tmp squashfs-tools # Downloads to /tmp/optional and loads extension temporarily
 
 mkdir -p /tmp/piCoreCDSP/usr/local/
+
 cd /tmp/piCoreCDSP/usr/local/
-
-mkdir -p lib/alsa-lib/
-cp /usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so ./lib/alsa-lib/libasound_module_pcm_cdsp.so
-
-sudo wget https://github.com/HEnquist/camilladsp/releases/download/v1.0.3/camilladsp-linux-aarch64.tar.gz
+wget https://github.com/HEnquist/camilladsp/releases/download/v1.0.3/camilladsp-linux-aarch64.tar.gz
 tar -xvf camilladsp-linux-aarch64.tar.gz
 rm -f camilladsp-linux-aarch64.tar.gz
 
-sudo cp -a /usr/local/camillagui .
+cd /tmp/piCoreCDSP/
+
+mkdir -p usr/local/lib/alsa-lib/
+mv /usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so
+
+sudo cp -a /usr/local/camillagui usr/local/
+
+mkdir -p usr/local/tce.installed/
+echo "#!/bin/sh
+
+sudo -u tc sh -c 'while [ ! -f /usr/bin/python3 ]; do sleep 1; done
+source /usr/local/camillagui/environment/bin/activate
+python3 /usr/local/camillagui/main.py &'" > usr/local/tce.installed/piCoreCDSP
+chmod 775 usr/local/tce.installed/piCoreCDSP
 
 cd /tmp
+tce-load -wil -t /tmp squashfs-tools # Downloads to /tmp/optional and loads extension temporarily
 mksquashfs piCoreCDSP piCoreCDSP.tcz
-mv piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
+mv -f piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
 echo "python3.8.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep
 cd /etc/sysconfig/tcedir
 echo piCoreCDSP.tcz >> onboot.lst
