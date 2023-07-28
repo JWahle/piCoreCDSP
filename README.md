@@ -15,7 +15,7 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
    - run `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
 3. Open CamillaGUI in the browser:
    - will be running on port 5000 of piCorePlayer.
-     Usually can be opened with `pcp.local:5000` or `<IP of your piCorePlayer>:5000`
+     Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
    - under `Playback device` enter the settings for your DAC (by default, the Raspi headphone output is used)
      - These HAVE TO BE CORRECT, otherwise CamillaDSP will not start!
        - `device`: The Alsa device name of the DAC
