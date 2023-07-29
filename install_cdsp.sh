@@ -1,4 +1,11 @@
-#!/bin/sh -v
+#!/bin/sh
+
+if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
+    echo "Uninstall the piCoreCDSP Extension before installing it again"
+    exit
+fi
+
+set -v
 
 ### Create CamillaDSP config folders
 
@@ -10,9 +17,14 @@ mkdir camilladsp/coeffs
 ### Download default config
 
 cd /mnt/mmcblk0p2/tce/camilladsp
-wget https://github.com/JWahle/piCoreCDSP/raw/main/files/Headphones.yml
-cp Headphones.yml configs
-ln -s configs/Headphones.yml active_config
+rm -f Headphones.yml
+wget -q https://github.com/JWahle/piCoreCDSP/raw/main/files/Headphones.yml
+if [ ! -f "configs/Headphones.yml" ]; then
+    cp Headphones.yml configs
+fi
+if [ ! -f "active_config" ]; then
+    ln -s configs/Headphones.yml active_config
+fi
 
 ### Install ALSA CDSP
 
@@ -25,7 +37,14 @@ sudo make install
 cd /tmp
 rm -rf alsa_cdsp/
 cd /tmp
-wget https://github.com/JWahle/piCoreCDSP/raw/main/files/camilladsp.conf
+wget -q https://github.com/JWahle/piCoreCDSP/raw/main/files/camilladsp.conf
+
+# Remove old configuration, in case it was installed before
+cat /etc/asound.conf |\
+ tr '\n' '\r' |\
+  sed 's|\r\r# For more info about this configuration see: https://github.com/scripple/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |\
+   tr '\r' '\n' > /tmp/asound.conf
+cat /tmp/asound.conf > /etc/asound.conf
 cat camilladsp.conf >> /etc/asound.conf
 
 ### Set Squeezelite and Shairport output to camilladsp
@@ -51,7 +70,7 @@ wget https://github.com/HEnquist/camillagui-backend/releases/download/v1.0.1/cam
 unzip camillagui.zip
 rm -f camillagui.zip
 rm -f config/camillagui.yml
-wget -P config https://github.com/JWahle/piCoreCDSP/raw/main/files/camillagui.yml
+wget -q -P config https://github.com/JWahle/piCoreCDSP/raw/main/files/camillagui.yml
 
 ### Create and install piCoreCDSP.tcz
 
