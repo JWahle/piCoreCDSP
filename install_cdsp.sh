@@ -30,7 +30,21 @@ mkdir camilladsp/coeffs
 
 cd /mnt/mmcblk0p2/tce/camilladsp
 rm -f Headphones.yml
-wget -q https://github.com/JWahle/piCoreCDSP/raw/main/files/Headphones.yml
+echo '
+devices:
+  samplerate: 44100
+  chunksize: 2048
+  queuelimit: 4
+  capture:
+    type: Stdin
+    channels: 2
+    format: S16LE
+  playback:
+    type: Alsa
+    channels: 2
+    device: "plughw:Headphones"
+    format: S16LE
+' > Headphones.yml
 if [ ! -f "configs/Headphones.yml" ]; then
     cp Headphones.yml configs
 fi
@@ -49,7 +63,6 @@ sudo make install
 cd /tmp
 rm -rf alsa_cdsp/
 cd /tmp
-wget -q https://github.com/JWahle/piCoreCDSP/raw/main/files/camilladsp.conf
 
 # Remove old configuration, in case it was installed before
 cat /etc/asound.conf |\
@@ -57,7 +70,46 @@ cat /etc/asound.conf |\
   sed 's|\r\r# For more info about this configuration see: https://github.com/scripple/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |\
    tr '\r' '\n' > /tmp/asound.conf
 cat /tmp/asound.conf > /etc/asound.conf
-cat camilladsp.conf >> /etc/asound.conf
+echo '
+# For more info about this configuration see: https://github.com/scripple/alsa_cdsp
+pcm.camilladsp {
+    type cdsp
+    cpath "/usr/local/camilladsp"
+    config_out "/mnt/mmcblk0p2/tce/camilladsp/active_config"
+
+    # config_cdsp says to use the new CamillaDSP internal substitutions.
+    # When config_cdsp is set to an integer != 0 the hw_params and
+    # extra samples are passed to CamillaDSP on the command line as
+    # -f format -r samplerate -n channels -e extra_samples
+    config_cdsp 1
+
+####################################
+# Set the values for your DAC here #
+####################################
+    min_channels 1
+    max_channels 8
+    rates = [
+        44100
+        48000
+        88200
+        96000
+        176400
+        192000
+        352800
+        384000
+    ]
+
+   cargs [
+# Uncomment, if you want more detailed logging output
+#        -v
+        -p "1234"
+        -a "0.0.0.0"
+        -o "/tmp/camilladsp.log"
+   ]
+
+}
+# pcm.camilladsp
+' >> /etc/asound.conf
 
 ### Set Squeezelite and Shairport output to camilladsp
 
@@ -84,8 +136,24 @@ deactivate # deactivate custom python environment
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v1.0.1/camillagui.zip
 unzip camillagui.zip
 rm -f camillagui.zip
-rm -f config/camillagui.yml
-wget -q -P config https://github.com/JWahle/piCoreCDSP/raw/main/files/camillagui.yml
+echo '
+---
+camilla_host: "127.0.0.1"
+camilla_port: 1234
+port: 5000
+config_dir: "/mnt/mmcblk0p2/tce/camilladsp/configs"
+coeff_dir: "/mnt/mmcblk0p2/tce/camilladsp/coeffs"
+default_config: "/mnt/mmcblk0p2/tce/camilladsp/default_config.yml"
+active_config: "/mnt/mmcblk0p2/tce/camilladsp/active_config"
+active_config_txt: "/mnt/mmcblk0p2/tce/camilladsp/active_config.txt"
+log_file: "/tmp/camilladsp.log"
+update_config_symlink: true
+update_config_txt: false
+on_set_active_config: null
+on_get_active_config: null
+supported_capture_types: ["Stdin"]
+supported_playback_types: ["Alsa"]
+' > config/camillagui.yml
 
 ### Create and install piCoreCDSP.tcz
 
