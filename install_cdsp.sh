@@ -183,7 +183,7 @@ echo "#!/bin/sh
 
 sudo -u tc sh -c 'while [ ! -f /usr/local/bin/python3 ]; do sleep 1; done
 source /usr/local/camillagui/environment/bin/activate
-python3 /usr/local/camillagui/main.py &'" > usr/local/tce.installed/piCoreCDSP
+python3 /usr/local/camillagui/main.py &' &" > usr/local/tce.installed/piCoreCDSP
 chmod 775 usr/local/tce.installed/piCoreCDSP
 
 cd /tmp
