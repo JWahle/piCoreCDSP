@@ -34,4 +34,3 @@ The `install_cdsp.sh` script downloads the following projects including dependen
 - https://github.com/scripple/alsa_cdsp
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
-- additional configuration files are located in the `files` folder
