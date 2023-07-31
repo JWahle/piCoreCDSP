@@ -19,7 +19,7 @@ The goal of this project is to provide an easy way to install CamillaDSP on a pi
    - will be running on port 5000 of piCorePlayer.
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
    - under `Playback device` enter the settings for your DAC (by default, the Raspi headphone output is used)
-     - These HAVE TO BE CORRECT, otherwise CamillaDSP will not start!
+     - These HAVE TO BE CORRECT, otherwise CamillaDSP and Squeezelite won't start!
        - `device`: The Alsa device name of the DAC
          - a list of available devices can be found in `Squeezelite settings > Output setting`
          - if you know the `sampleformat` for your DAC or want to find it through trial and error,
