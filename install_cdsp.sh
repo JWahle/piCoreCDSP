@@ -2,6 +2,7 @@
 
 if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
     echo "Uninstall the piCoreCDSP Extension before installing it again"
+    echo "(In Main Page > Extensions > Installed > select 'piCoreCDSP.tcz' and press 'Delete')"
     exit
 fi
 
