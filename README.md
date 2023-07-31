@@ -1,7 +1,7 @@
 # piCoreCDSP
 
 The goal of this project is, to provide an easy way to install CamillaDSP on a piCorePlayer installation.
-This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifications.
+This guide assumes a fresh piCorePlayer 8.2.0 installation without any modifications.
 
 # How to install
 
@@ -12,7 +12,8 @@ This guide assumes a fresh piCorePlayer 8.2.0 64Bit install without any modifica
    - SSH onto the piCorePlayer
      - usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
      - [How to find the IP adress of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/) 
-   - run `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
+   - on 64bit piCorePlayer run `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
+   - on 32bit piCorePlayer run `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh 32bit`
 3. Open CamillaGUI in the browser:
    - will be running on port 5000 of piCorePlayer.
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
