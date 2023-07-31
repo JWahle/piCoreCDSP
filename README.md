@@ -1,7 +1,7 @@
 # piCoreCDSP
 
 The goal of this project is, to provide an easy way to install CamillaDSP on a piCorePlayer installation.
-This guide assumes a fresh piCorePlayer 8.2.0 installation without any modifications.
+This guide assumes a fresh piCorePlayer 8.2.0 installation without any modifications on an armv7 or arch64 device.
 
 # How to install
 
