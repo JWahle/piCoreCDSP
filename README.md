@@ -1,10 +1,11 @@
 # piCoreCDSP
+The goal of this project is to provide an easy way to install CamillaDSP on a piCorePlayer installation.
 
-The goal of this project is, to provide an easy way to install CamillaDSP on a piCorePlayer installation.
-This guide assumes a fresh piCorePlayer 8.2.0 installation without any modifications on an armv7 or arch64 device.
+## Requirements
+- a fresh piCorePlayer 8.2.0 installation without any modifications
+- on an armv7 or arch64 device
 
-# How to install
-
+## How to install
 1. Increase piCorePlayer SD Card size to at least 200MB
    - in `Main Page > Additional functions > Resize FS`
    - select `200 MB` or one of the larger options
@@ -26,10 +27,10 @@ This guide assumes a fresh piCorePlayer 8.2.0 installation without any modificat
        - `channels`: a supported channel count for the DAC
        - `sampleformat`: a supported sample format for the DAC. (Only important, when NOT using a `plughw:` device)
    - Hit `Apply and save`
-   - You should see channel meters and `State: RUNNING` on the left
+     - You should see channel meters and `State: RUNNING` on the left
+     - If things go wrong, check the CamillaDSP log file via the `Show log file` button for more info
 
-# Implementation
-
+## Implementation
 The `install_cdsp.sh` script downloads the following projects including dependencies and runs them with convenient default settings:
 - https://github.com/scripple/alsa_cdsp
 - https://github.com/HEnquist/camilladsp
