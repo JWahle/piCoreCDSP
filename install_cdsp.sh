@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/sh -e
 
 ### Abort, if piCoreCDSP extension is already installed
 if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
-    echo "Uninstall the piCoreCDSP Extension and reboot, before installing it again"
-    echo "(In Main Page > Extensions > Installed > select 'piCoreCDSP.tcz' and press 'Delete')"
-    exit
+    >&2 echo "Uninstall the piCoreCDSP Extension and reboot, before installing it again"
+    >&2 echo "In Main Page > Extensions > Installed > select 'piCoreCDSP.tcz' and press 'Delete'"
+    exit 1
 fi
 
 ### Check for 32bit mode
@@ -13,8 +13,8 @@ if [ "32bit" = "$1" ]; then
 elif [ -z "$1" ]; then
     use32bit=false
 else
-  echo "$1 is not supported. Use '32bit' or no arguments."
-  exit
+  >&2 echo "$1 is not supported. Use '32bit' or no arguments."
+  exit 1
 fi
 
 set -v
@@ -22,14 +22,12 @@ set -v
 ### Create CamillaDSP config folders
 
 cd /mnt/mmcblk0p2/tce
-mkdir camilladsp
-mkdir camilladsp/configs
-mkdir camilladsp/coeffs
+mkdir -p camilladsp/configs
+mkdir -p camilladsp/coeffs
 
 ### Download default config
 
 cd /mnt/mmcblk0p2/tce/camilladsp
-rm -f Headphones.yml
 echo '
 devices:
   samplerate: 44100
@@ -45,9 +43,7 @@ devices:
     device: "plughw:Headphones"
     format: S16LE
 ' > Headphones.yml
-if [ ! -f "configs/Headphones.yml" ]; then
-    cp Headphones.yml configs
-fi
+/bin/cp Headphones.yml configs/Headphones.yml
 if [ ! -f "active_config" ]; then
     ln -s configs/Headphones.yml active_config
 fi
