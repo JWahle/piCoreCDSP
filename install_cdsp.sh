@@ -4,9 +4,9 @@
 requiredSpaceInMB=100
 availableSpaceInMB=$(/bin/df -m /dev/mmcblk0p2 | awk 'NR==2 { print $4 }')
 if [[ $availableSpaceInMB -le $requiredSpaceInMB ]]; then
-  >&2 echo "Not enough free space"
-  >&2 echo "Increase SD-Card size: Main Page > Additional functions > Resize FS"
-  exit 1
+    >&2 echo "Not enough free space"
+    >&2 echo "Increase SD-Card size: Main Page > Additional functions > Resize FS"
+    exit 1
 fi
 
 ### Abort, if piCoreCDSP extension is already installed
@@ -16,14 +16,11 @@ if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
     exit 1
 fi
 
-### Check for 32bit mode
-if [ "32bit" = "$1" ]; then
-    use32bit=true
-elif [ -z "$1" ]; then
+### Decide for 64bit or 32bit installation
+if [ "aarch64" = "$(uname -m)" ]; then
     use32bit=false
 else
-  >&2 echo "$1 is not supported. Use '32bit' or no arguments."
-  exit 1
+    use32bit=true
 fi
 
 set -v
