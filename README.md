@@ -42,3 +42,8 @@ If you made some changes to the script and want to run it quickly on the piCoreP
 `scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"`  
 If your piCorePlayer is not available on [pcp.local](http://pcp.local),
 replace both occurrences of `pcp.local` with the IP-Adress of your piCorePlayer.
+
+## Troubleshooting
+
+Check, your system meets all the requirements, reboot and try to install again.  
+If the error persists, post the error message on the piCoreCDSP Thread on [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/) or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
