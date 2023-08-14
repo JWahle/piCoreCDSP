@@ -3,7 +3,7 @@ The goal of this project is to provide an easy way to install CamillaDSP includi
 
 ## Requirements
 - a fresh piCorePlayer 8.2.0 installation without any modifications
-- on an armv7 or arch64 device
+- on an armv7 or arch64 compatible device
 
 ## How to install
 1. Increase piCorePlayer SD Card size to at least 200MB
@@ -24,7 +24,8 @@ The goal of this project is to provide an easy way to install CamillaDSP includi
          - A list of available devices can be found in `Squeezelite settings > Output setting`
          - If you know the `sampleformat` for your DAC or want to find it through trial and error,
            then choose a device with `hw:` prefix. Otherwise, use one with `plughw:` prefix. 
-       - `channels`: a supported channel count for the DAC
+       - `channels`: a supported channel count for the DAC  
+         Usually 2 for a stereo DAC.
        - `sampleformat`: a supported sample format for the DAC. (Only important, when NOT using a `plughw:` device)
    - Hit `Apply and save`
      - You should see channel meters and `State: RUNNING` on the left
