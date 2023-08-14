@@ -31,7 +31,7 @@ cd /mnt/mmcblk0p2/tce
 mkdir -p camilladsp/configs
 mkdir -p camilladsp/coeffs
 
-### Download default config
+### Create default config
 
 cd /mnt/mmcblk0p2/tce/camilladsp
 echo '
