@@ -31,6 +31,24 @@ The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 i
      - You should see channel meters and `State: RUNNING` on the left
      - If things go wrong, check the CamillaDSP log file via the `Show log file` button for more info
 
+## How to uninstall
+If you want to uninstall without setting up piCorePlayer again,
+uninstall the piCoreCDSP Extension
+(In `Main Page > Extensions > Installed >` select `piCoreCDSP.tcz`, press `Delete`)
+and reboot.
+Afterward SSH onto the piCorePlayer and remove the `pcm.camilladsp` entry from `/etc/asound.conf`.
+This is easy to do with the Nano text editor:
+```shell
+tce-load -wil -t /tmp nano
+nano /etc/asound.conf
+```
+Lastly, remove the installation script and CamillaDSP configs + filters and save your changes:
+```shell
+rm -f /home/tc/install_cdsp.sh
+rm -rf /etc/sysconfig/tcedir/camilladsp/
+pcp backup
+```
+
 ## Implementation
 The `install_cdsp.sh` script downloads the following projects including dependencies and installs them with convenient default settings:
 - https://github.com/scripple/alsa_cdsp
