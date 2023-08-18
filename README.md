@@ -33,7 +33,8 @@ The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 i
 
 ## How to uninstall
 If you want to uninstall without setting up piCorePlayer again,
-uninstall the piCoreCDSP Extension
+reconfigure your audio output device in the pCP UI,
+then uninstall the piCoreCDSP Extension
 (In `Main Page > Extensions > Installed >` select `piCoreCDSP.tcz`, press `Delete`)
 and reboot.
 Afterward SSH onto the piCorePlayer and remove the `pcm.camilladsp` entry from `/etc/asound.conf`.
