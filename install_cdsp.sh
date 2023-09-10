@@ -57,7 +57,7 @@ fi
 ### Install ALSA CDSP
 
 cd /tmp
-tce-load -wil -t /tmp git compiletc libasound-dev # Downloads to /tmp/optional and loads extensions temporarily
+pcp-load -wil -t /tmp git compiletc libasound-dev # Downloads to /tmp/optional and loads extensions temporarily
 git clone https://github.com/scripple/alsa_cdsp.git
 cd /tmp/alsa_cdsp
 make
@@ -120,9 +120,9 @@ sed 's/^SHAIRPORT_OUT=.*/SHAIRPORT_OUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.
 
 ### Install CamillaGUI
 
-tce-load -wil python3.8
-tce-load -wil -t /tmp python3.8-pip # Downloads to /tmp/optional and loads extension temporarily
-$use32bit && tce-load -wil -t /tmp python3.8-dev # Downloads to /tmp/optional and loads extension temporarily
+pcp-load -wil python3.8
+pcp-load -wil -t /tmp python3.8-pip # Downloads to /tmp/optional and loads extension temporarily
+$use32bit && pcp-load -wil -t /tmp python3.8-dev # Downloads to /tmp/optional and loads extension temporarily
 sudo mkdir -m 775 /usr/local/camillagui
 sudo chown root:staff /usr/local/camillagui
 cd /usr/local/camillagui
@@ -189,7 +189,7 @@ python3 /usr/local/camillagui/main.py &' &" > usr/local/tce.installed/piCoreCDSP
 chmod 775 usr/local/tce.installed/piCoreCDSP
 
 cd /tmp
-tce-load -wil -t /tmp squashfs-tools # Downloads to /tmp/optional and loads extension temporarily
+pcp-load -wil -t /tmp squashfs-tools # Downloads to /tmp/optional and loads extension temporarily
 mksquashfs piCoreCDSP piCoreCDSP.tcz
 mv -f piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
 echo "python3.8.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep

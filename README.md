@@ -58,7 +58,9 @@ The `install_cdsp.sh` script downloads the following projects including dependen
 
 ## For developers
 If you made some changes to the script and want to run it quickly on the piCorePlayer, run  
-`scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"`  
+```shell
+scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"
+```
 If your piCorePlayer is not available on [pcp.local](http://pcp.local),
 replace both occurrences of `pcp.local` with the IP-Adress of your piCorePlayer.
 
