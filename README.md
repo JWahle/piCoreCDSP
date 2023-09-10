@@ -1,5 +1,5 @@
 # piCoreCDSP
-The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 including GUI and automatic samplerate switching on a piCorePlayer installation.
+The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 including GUI and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
 - a fresh piCorePlayer 8.2.0 installation without any modifications
