@@ -31,6 +31,11 @@ The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 i
      - You should see channel meters and `State: RUNNING` on the left
      - If things go wrong, check the CamillaDSP log file via the `Show log file` button for more info
 
+## Troubleshooting
+
+Check, your system meets all the requirements, reboot and try to install again.  
+If the error persists, post the error message on the piCoreCDSP Thread on [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/) or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
+
 ## How to uninstall
 If you want to uninstall without setting up piCorePlayer again,
 reconfigure your audio output device in the pCP UI,
@@ -63,8 +68,3 @@ scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"
 ```
 If your piCorePlayer is not available on [pcp.local](http://pcp.local),
 replace both occurrences of `pcp.local` with the IP-Adress of your piCorePlayer.
-
-## Troubleshooting
-
-Check, your system meets all the requirements, reboot and try to install again.  
-If the error persists, post the error message on the piCoreCDSP Thread on [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/) or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
