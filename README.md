@@ -36,7 +36,7 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 
 Check, your system meets all the requirements, reboot and try to install again.
 
-Sometimes, the scripts dependencies get corrupted while downloading.  
+Sometimes, the script's dependencies get corrupted while downloading.  
 In that case, you'll see messages like this somewhere in the log:  
 `Checking MD5 of: openssl.tcz.....FAIL`  
 There are a couple of things, you can try to work around this:
