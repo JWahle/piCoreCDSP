@@ -1,5 +1,6 @@
 # piCoreCDSP
-The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 including GUI and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
+The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 including GUI
+and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
 - a fresh piCorePlayer 8.2.0 installation without any modifications
@@ -12,7 +13,7 @@ The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 i
 2. Run `install_cdsp.sh` on piCorePlayer:
    - SSH onto the piCorePlayer
      - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
-     - [How to find the IP adress of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/) 
+     - [How to find the IP adress of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/)
    - Run  
      `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
 3. Open CamillaGUI in the browser:
@@ -23,7 +24,7 @@ The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 i
        - `device`: The Alsa device name of the DAC
          - A list of available devices can be found in `Squeezelite settings > Output setting`
          - If you know the `sampleformat` for your DAC or want to find it through trial and error,
-           then choose a device with `hw:` prefix. Otherwise, use one with `plughw:` prefix. 
+           then choose a device with `hw:` prefix. Otherwise, use one with `plughw:` prefix.
        - `channels`: a supported channel count for the DAC  
          Usually 2 for a stereo DAC.
        - `sampleformat`: a supported sample format for the DAC. (Only important, when NOT using a `plughw:` device)
@@ -33,8 +34,21 @@ The goal of this project is to provide an easy way to install CamillaDSP 1.0.3 i
 
 ## Troubleshooting
 
-Check, your system meets all the requirements, reboot and try to install again.  
-If the error persists, post the error message on the piCoreCDSP Thread on [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/) or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
+Check, your system meets all the requirements, reboot and try to install again.
+
+Sometimes, the scripts dependencies get corrupted while downloading.  
+In that case, you'll see messages like this somewhere in the log:  
+`Checking MD5 of: openssl.tcz.....FAIL`  
+There are a couple of things, you can try to work around this:
+1. reboot and try to install again, repeat until successful
+2. You can try to switch the extension repo:  
+   - Reboot, then go to Main Page > Extensions > wait for the check to complete (until you see 5 green check marks)  
+   - Then go to Available > Current repository > select "piCorePlayer mirror repository" and "Set".  
+   - Run the script again.
+
+If the error persists, post the error message on the piCoreCDSP Thread on
+[diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/)
+or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
 
 ## How to uninstall
 If you want to uninstall without setting up piCorePlayer again,
@@ -56,7 +70,8 @@ pcp backup
 ```
 
 ## Implementation
-The `install_cdsp.sh` script downloads the following projects including dependencies and installs them with convenient default settings:
+The `install_cdsp.sh` script downloads the following projects including dependencies
+and installs them with convenient default settings:
 - https://github.com/scripple/alsa_cdsp
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
