@@ -23,6 +23,22 @@ else
     use32bit=true
 fi
 
+# Installs a module from the piCorePlayer repository - if not already installed.
+# Call like this: install_if_missing module_name
+install_if_missing(){
+  if ! tce-status -i | grep -q "$1" ; then
+    pcp-load -wil "$1"
+  fi
+}
+
+# Installs a module from the piCorePlayer repository, at least until the next reboot - if not already installed.
+# Call like this: install_temporarily_if_missing module_name
+install_temporarily_if_missing(){
+  if ! tce-status -i | grep -q "$1" ; then
+    pcp-load -wil -t /tmp "$1" # Downloads to /tmp/optional and loads extensions temporarily
+  fi
+}
+
 set -v
 
 ### Create CamillaDSP config folders
@@ -57,7 +73,11 @@ fi
 ### Install ALSA CDSP
 
 cd /tmp
-pcp-load -wil -t /tmp git compiletc libasound-dev # Downloads to /tmp/optional and loads extensions temporarily
+
+install_temporarily_if_missing git
+install_temporarily_if_missing compiletc
+install_temporarily_if_missing libasound-dev
+
 git clone https://github.com/scripple/alsa_cdsp.git
 cd /tmp/alsa_cdsp
 make
@@ -120,9 +140,9 @@ sed 's/^SHAIRPORT_OUT=.*/SHAIRPORT_OUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.
 
 ### Install CamillaGUI
 
-pcp-load -wil python3.8
-pcp-load -wil -t /tmp python3.8-pip # Downloads to /tmp/optional and loads extension temporarily
-$use32bit && pcp-load -wil -t /tmp python3.8-dev # Downloads to /tmp/optional and loads extension temporarily
+install_if_missing python3.8
+install_temporarily_if_missing python3.8-pip
+$use32bit && install_temporarily_if_missing python3.8-dev
 sudo mkdir -m 775 /usr/local/camillagui
 sudo chown root:staff /usr/local/camillagui
 cd /usr/local/camillagui
@@ -176,7 +196,7 @@ fi
 cd /tmp/piCoreCDSP/
 
 mkdir -p usr/local/lib/alsa-lib/
-mv /usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so
+sudo mv /usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so usr/local/lib/alsa-lib/libasound_module_pcm_cdsp.so
 
 sudo mv /usr/local/camillagui usr/local/
 
@@ -189,7 +209,7 @@ python3 /usr/local/camillagui/main.py &' &" > usr/local/tce.installed/piCoreCDSP
 chmod 775 usr/local/tce.installed/piCoreCDSP
 
 cd /tmp
-pcp-load -wil -t /tmp squashfs-tools # Downloads to /tmp/optional and loads extension temporarily
+install_temporarily_if_missing squashfs-tools
 mksquashfs piCoreCDSP piCoreCDSP.tcz
 mv -f piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
 echo "python3.8.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep
