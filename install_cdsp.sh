@@ -23,6 +23,12 @@ else
     use32bit=true
 fi
 
+if [ -d "/tmp/piCoreCDSP" ]; then
+    >&2 echo "Reboot before running the script again."
+    exit 1
+fi
+mkdir -p /tmp/piCoreCDSP
+
 # Installs a module from the piCorePlayer repository - if not already installed.
 # Call like this: install_if_missing module_name
 install_if_missing(){
