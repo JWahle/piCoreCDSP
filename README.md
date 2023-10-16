@@ -11,7 +11,7 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
    - In `Main Page > Additional functions > Resize FS`
    - Select `200 MB` or one of the larger options
 2. Run `install_cdsp.sh` on piCorePlayer:
-   - SSH onto the piCorePlayer
+   - SSH onto the piCorePlayer as user `tc`
      - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
      - [How to find the IP adress of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/)
    - Run  
