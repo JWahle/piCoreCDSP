@@ -70,11 +70,24 @@ devices:
     channels: 2
     device: "plughw:Headphones"
     format: S16LE
-' > Headphones.yml
-/bin/cp Headphones.yml configs/Headphones.yml
-if [ ! -f "active_config" ]; then
-    ln -s configs/Headphones.yml active_config
-fi
+' > default_config.yml
+/bin/cp default_config.yml configs/Headphones.yml
+
+echo '
+config_path: /mnt/mmcblk0p2/tce/camilladsp/configs/Headphones.yml
+mute:
+- false
+- false
+- false
+- false
+- false
+volume:
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+' > camilladsp_statefile.yml
 
 ### Install ALSA CDSP
 
@@ -105,12 +118,6 @@ echo '
 pcm.camilladsp {
     type cdsp
     cpath "/usr/local/camilladsp"
-    config_out "/mnt/mmcblk0p2/tce/camilladsp/active_config"
-
-    # config_cdsp says to use the new CamillaDSP internal substitutions.
-    # When config_cdsp is set to an integer != 0 the hw_params and
-    # extra samples are passed to CamillaDSP on the command line as
-    # -f format -r samplerate -n channels -e extra_samples
     config_cdsp 1
 
 ####################################
@@ -135,6 +142,7 @@ pcm.camilladsp {
         -p "1234"
         -a "0.0.0.0"
         -o "/tmp/camilladsp.log"
+        --statefile "/mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml"
    ]
 
 }
@@ -160,30 +168,29 @@ mv -f environment/bin/activate_new environment/bin/activate
 source environment/bin/activate # activate custom python environment
 python3 -m pip install --upgrade pip
 pip install websocket_client aiohttp jsonschema setuptools
-pip install git+https://github.com/HEnquist/pycamilladsp.git@v1.0.0
-pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v1.0.2
+pip install git+https://github.com/HEnquist/pycamilladsp.git@v2.0.0-alpha2
+pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v2.0.0-alpha3
 deactivate # deactivate custom python environment
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v1.0.1/camillagui.zip
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.0.0-alpha3/camillagui.zip
 unzip camillagui.zip
 rm -f camillagui.zip
 echo '
 ---
-camilla_host: "127.0.0.1"
+camilla_host: "0.0.0.0"
 camilla_port: 1234
 port: 5000
 config_dir: "/mnt/mmcblk0p2/tce/camilladsp/configs"
 coeff_dir: "/mnt/mmcblk0p2/tce/camilladsp/coeffs"
 default_config: "/mnt/mmcblk0p2/tce/camilladsp/default_config.yml"
-active_config: "/mnt/mmcblk0p2/tce/camilladsp/active_config"
-active_config_txt: "/mnt/mmcblk0p2/tce/camilladsp/active_config.txt"
+statefile_path: "/mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml"
 log_file: "/tmp/camilladsp.log"
-update_config_symlink: true
-update_config_txt: false
 on_set_active_config: null
 on_get_active_config: null
-supported_capture_types: ["Stdin"]
+supported_capture_types: ["Stdin", "Alsa"]
 supported_playback_types: ["Alsa"]
 ' > config/camillagui.yml
+
+touch /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml
 
 ### Create and install piCoreCDSP.tcz
 
@@ -192,11 +199,11 @@ mkdir -p /tmp/piCoreCDSP/usr/local/
 cd /tmp/piCoreCDSP/usr/local/
 
 if $use32bit; then
-    wget https://github.com/HEnquist/camilladsp/releases/download/v1.0.3/camilladsp-linux-armv7.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0-alpha5/camilladsp-linux-armv7.tar.gz
     tar -xvf camilladsp-linux-armv7.tar.gz
     rm -f camilladsp-linux-armv7.tar.gz
 else
-    wget https://github.com/HEnquist/camilladsp/releases/download/v1.0.3/camilladsp-linux-aarch64.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0-alpha5/camilladsp-linux-aarch64.tar.gz
     tar -xvf camilladsp-linux-aarch64.tar.gz
     rm -f camilladsp-linux-aarch64.tar.gz
 fi
