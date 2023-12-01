@@ -92,6 +92,8 @@ cd /tmp
 rm -rf alsa_cdsp/
 cd /tmp
 
+sudo chmod 664 /etc/asound.conf
+sudo chown root:staff /etc/asound.conf
 # Remove old configuration, in case it was installed before
 cat /etc/asound.conf |\
  tr '\n' '\r' |\
