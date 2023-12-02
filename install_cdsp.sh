@@ -97,8 +97,9 @@ install_temporarily_if_missing git
 install_temporarily_if_missing compiletc
 install_temporarily_if_missing libasound-dev
 
-git clone https://github.com/scripple/alsa_cdsp.git
+git clone https://github.com/spfenwick/alsa_cdsp.git
 cd /tmp/alsa_cdsp
+git checkout 6c4d4a1d2dee286415916f6663cc4498a0a1e250
 make
 sudo make install
 cd /tmp
@@ -118,7 +119,6 @@ echo '
 pcm.camilladsp {
     type cdsp
     cpath "/usr/local/camilladsp"
-    config_cdsp 1
 
 ####################################
 # Set the values for your DAC here #

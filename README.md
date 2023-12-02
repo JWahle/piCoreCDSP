@@ -73,7 +73,7 @@ pcp backup
 ## Implementation
 The `install_cdsp.sh` script downloads the following projects including dependencies
 and installs them with convenient default settings:
-- https://github.com/scripple/alsa_cdsp
+- https://github.com/spfenwick/alsa_cdsp.git (forked from https://github.com/scripple/alsa_cdsp)
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
 
