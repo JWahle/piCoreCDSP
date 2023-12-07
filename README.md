@@ -78,10 +78,20 @@ and installs them with convenient default settings:
 - https://github.com/HEnquist/camillagui-backend
 
 ## For developers
-If you made some changes to the script on your local machine and want to run it quickly on the piCorePlayer,  
+
+In this section it is assumed, that your piCorePlayer is available on [pcp.local](http://pcp.local).
+If this is not the case, replace occurrences of `pcp.local` with the IP-Adress/hostname of your piCorePlayer.
+
+### Modifying the installation script
+If you made some changes to the installation script on your local machine and want to run it quickly on the piCorePlayer,  
 run the following command from the location of the script:  
 ```shell
 scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"
 ```
-If your piCorePlayer is not available on [pcp.local](http://pcp.local),
-replace both occurrences of `pcp.local` with the IP-Adress of your piCorePlayer.
+
+### Running your own python scripts
+You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like this:
+1. Copy your script from your local machine to pCP: `scp <your_script> tc@pcp.local:~`
+2. In `Tweaks > User Commands` set one of the commands to this:  
+   `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/<your_script>'`
+If you need to access files in your script, make sure to use absolute paths.
