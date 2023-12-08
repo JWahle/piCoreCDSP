@@ -94,4 +94,6 @@ You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like 
 1. Copy your script from your local machine to pCP: `scp <your_script> tc@pcp.local:~`
 2. In `Tweaks > User Commands` set one of the commands to this:  
    `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/<your_script>'`
+3. Save and reboot
+
 If you need to access files in your script, make sure to use absolute paths.
