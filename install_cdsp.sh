@@ -168,10 +168,10 @@ mv -f environment/bin/activate_new environment/bin/activate
 source environment/bin/activate # activate custom python environment
 python3 -m pip install --upgrade pip
 pip install websocket_client aiohttp jsonschema setuptools
-pip install git+https://github.com/HEnquist/pycamilladsp.git@v2.0.0-alpha2
-pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v2.0.0-alpha3
+pip install git+https://github.com/HEnquist/pycamilladsp.git@v2.0.0
+pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v2.0.0
 deactivate # deactivate custom python environment
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.0.0-alpha3/camillagui.zip
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.0.0/camillagui.zip
 unzip camillagui.zip
 rm -f camillagui.zip
 echo '
@@ -199,11 +199,11 @@ mkdir -p /tmp/piCoreCDSP/usr/local/
 cd /tmp/piCoreCDSP/usr/local/
 
 if $use32bit; then
-    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0-alpha5/camilladsp-linux-armv7.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0/camilladsp-linux-armv7.tar.gz
     tar -xvf camilladsp-linux-armv7.tar.gz
     rm -f camilladsp-linux-armv7.tar.gz
 else
-    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0-alpha5/camilladsp-linux-aarch64.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0/camilladsp-linux-aarch64.tar.gz
     tar -xvf camilladsp-linux-aarch64.tar.gz
     rm -f camilladsp-linux-aarch64.tar.gz
 fi
