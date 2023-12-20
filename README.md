@@ -1,22 +1,20 @@
 # piCoreCDSP
-The goal of this project is to provide an easy way to install CamillaDSP 2.0.0 including GUI
+The goal of this project is to provide an easy way to install CamillaDSP 2.0.3 including GUI
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
-- a fresh piCorePlayer 8.2.0 installation without any modifications
+- a fresh piCorePlayer 9.2.0 installation without any modifications
 - on an armv7 or arch64 compatible device
 
 ## How to install
-1. Increase piCorePlayer SD Card size to at least 200MB
-   - In `Main Page > Additional functions > Resize FS`
-   - Select `200 MB` or one of the larger options
+1. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
 2. Run `install_cdsp.sh` on piCorePlayer:
    - SSH onto the piCorePlayer as user `tc`
      - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
-     - [How to find the IP adress of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/)
+     - [How to find the IP address of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/)
    - Run  
      `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
-   - Or if you want to run a modified version of the script, see the [For Developers](#for-developers) section
+   - Or if you want to run a modified version of the script or an older version, see the [For Developers](#for-developers) section
 3. Open CamillaGUI in the browser:
    - It will be running on port 5000 of piCorePlayer.  
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
@@ -82,7 +80,7 @@ and installs them with convenient default settings:
 ## For developers
 
 In this section it is assumed, that your piCorePlayer is available on [pcp.local](http://pcp.local).
-If this is not the case, replace occurrences of `pcp.local` with the IP-Adress/hostname of your piCorePlayer.
+If this is not the case, replace occurrences of `pcp.local` with the IP-address/hostname of your piCorePlayer.
 
 ### Modifying the installation script
 If you made some changes to the installation script on your local machine and want to run it quickly on the piCorePlayer,  

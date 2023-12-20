@@ -156,9 +156,9 @@ sed 's/^SHAIRPORT_OUT=.*/SHAIRPORT_OUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.
 
 ### Install CamillaGUI
 
-install_if_missing python3.8
-install_temporarily_if_missing python3.8-pip
-$use32bit && install_temporarily_if_missing python3.8-dev
+install_if_missing python3.11
+install_temporarily_if_missing python3.11-pip
+$use32bit && install_temporarily_if_missing python3.11-dev
 sudo mkdir -m 775 /usr/local/camillagui
 sudo chown root:staff /usr/local/camillagui
 cd /usr/local/camillagui
@@ -168,17 +168,20 @@ mv -f environment/bin/activate_new environment/bin/activate
 source environment/bin/activate # activate custom python environment
 python3 -m pip install --upgrade pip
 pip install websocket_client aiohttp jsonschema setuptools
-pip install git+https://github.com/HEnquist/pycamilladsp.git@v2.0.0
+pip install git+https://github.com/HEnquist/pycamilladsp.git@v2.0.2
 pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v2.0.0
 deactivate # deactivate custom python environment
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.0.0/camillagui.zip
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip
 unzip camillagui.zip
 rm -f camillagui.zip
 echo '
 ---
 camilla_host: "0.0.0.0"
 camilla_port: 1234
+bind_address: "0.0.0.0"
 port: 5000
+ssl_certificate: null
+ssl_private_key: null
 config_dir: "/mnt/mmcblk0p2/tce/camilladsp/configs"
 coeff_dir: "/mnt/mmcblk0p2/tce/camilladsp/coeffs"
 default_config: "/mnt/mmcblk0p2/tce/camilladsp/default_config.yml"
@@ -199,11 +202,11 @@ mkdir -p /tmp/piCoreCDSP/usr/local/
 cd /tmp/piCoreCDSP/usr/local/
 
 if $use32bit; then
-    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0/camilladsp-linux-armv7.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-armv7.tar.gz
     tar -xvf camilladsp-linux-armv7.tar.gz
     rm -f camilladsp-linux-armv7.tar.gz
 else
-    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.0/camilladsp-linux-aarch64.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz
     tar -xvf camilladsp-linux-aarch64.tar.gz
     rm -f camilladsp-linux-aarch64.tar.gz
 fi
@@ -227,7 +230,7 @@ cd /tmp
 install_temporarily_if_missing squashfs-tools
 mksquashfs piCoreCDSP piCoreCDSP.tcz
 mv -f piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
-echo "python3.8.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep
+echo "python3.11.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep
 echo piCoreCDSP.tcz >> /etc/sysconfig/tcedir/onboot.lst
 
 ### Save Changes
