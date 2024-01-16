@@ -31,7 +31,9 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
        - `sampleformat`: a supported sample format for the DAC. (Only important, when NOT using a `plughw:` device)
    - Hit `Apply and save`
      - You should see channel meters and `State: RUNNING` on the left
-     - If things go wrong, check the CamillaDSP log file via the `Show log file` button for more info
+     - If things go wrong, check the CamillaDSP log file via the `Show log file` button for more info.
+       After changing the settings, go to the pCP `Main Page` and press `Restart` to restart Squeezelite.
+       If the settings are correct, the channel meters and `State: RUNNING` on the left side should be visible in CamillaGUI.
 
 ## Troubleshooting
 
