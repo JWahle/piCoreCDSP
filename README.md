@@ -1,10 +1,10 @@
 # piCoreCDSP
-The goal of this project is to provide an easy way to install CamillaDSP 2.0.3 including GUI
+The goal of this project is to provide an easy way to install CamillaDSP 3.0.0 including GUI
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
 - a fresh piCorePlayer 9.2.0 installation without any modifications
-- on an armv7 or arch64 compatible device
+- on an armv7 or arch64 compatible device (Raspi 2/3/4/5)
 
 ## How to install
 1. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
@@ -83,7 +83,7 @@ In this section it is assumed, that your piCorePlayer is available on [pcp.local
 If this is not the case, replace occurrences of `pcp.local` with the IP-address/hostname of your piCorePlayer.
 
 ### Modifying the installation script
-If you made some changes to the installation script on your local machine and want to run it quickly on the piCorePlayer,  
+If you made some changes to the installation script on your local machine and want to run it quickly on the piCorePlayer, 
 run the following command from the location of the script:  
 ```shell
 scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"

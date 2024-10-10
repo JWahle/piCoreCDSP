@@ -1,5 +1,11 @@
 #!/bin/sh -e
 
+ALSA_CDSP_VERSION="a2a16745581cc3da7b28df14f4fdf169d6452f89"
+CDSP_VERSION="v3.0.0-beta.1"
+CAMILLA_GUI_VERSION="v3.0.0-beta.2"
+PYCDSP_VERSION="v2.0.2"
+PYCDSP_PLOT_VERSION="v2.0.0"
+
 ### Exit, if not enough free space
 requiredSpaceInMB=100
 availableSpaceInMB=$(/bin/df -m /dev/mmcblk0p2 | awk 'NR==2 { print $4 }')
@@ -99,7 +105,7 @@ install_temporarily_if_missing libasound-dev
 
 git clone https://github.com/spfenwick/alsa_cdsp.git
 cd /tmp/alsa_cdsp
-git checkout 6c4d4a1d2dee286415916f6663cc4498a0a1e250
+git checkout $ALSA_CDSP_VERSION
 make
 sudo make install
 cd /tmp
@@ -168,10 +174,10 @@ mv -f environment/bin/activate_new environment/bin/activate
 source environment/bin/activate # activate custom python environment
 python3 -m pip install --upgrade pip
 pip install websocket_client aiohttp jsonschema setuptools
-pip install git+https://github.com/HEnquist/pycamilladsp.git@v2.0.2
-pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@v2.0.0
+pip install git+https://github.com/HEnquist/pycamilladsp.git@${PYCDSP_VERSION}
+pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@${PYCDSP_PLOT_VERSION}
 deactivate # deactivate custom python environment
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip
+wget https://github.com/HEnquist/camillagui-backend/releases/download/${CAMILLA_GUI_VERSION}/camillagui.zip
 unzip camillagui.zip
 rm -f camillagui.zip
 echo '
@@ -182,6 +188,7 @@ bind_address: "0.0.0.0"
 port: 5000
 ssl_certificate: null
 ssl_private_key: null
+gui_config_file: null
 config_dir: "/mnt/mmcblk0p2/tce/camilladsp/configs"
 coeff_dir: "/mnt/mmcblk0p2/tce/camilladsp/coeffs"
 default_config: "/mnt/mmcblk0p2/tce/camilladsp/default_config.yml"
@@ -202,11 +209,11 @@ mkdir -p /tmp/piCoreCDSP/usr/local/
 cd /tmp/piCoreCDSP/usr/local/
 
 if $use32bit; then
-    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-armv7.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-armv7.tar.gz
     tar -xvf camilladsp-linux-armv7.tar.gz
     rm -f camilladsp-linux-armv7.tar.gz
 else
-    wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz
+    wget https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-aarch64.tar.gz
     tar -xvf camilladsp-linux-aarch64.tar.gz
     rm -f camilladsp-linux-aarch64.tar.gz
 fi
