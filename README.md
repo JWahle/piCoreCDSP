@@ -8,13 +8,13 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 
 ## How to install
 1. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
-2. Run `install_cdsp.sh` on piCorePlayer:
+2. Run `install_cdsp.sh` on piCorePlayer from a terminal:
    - SSH onto the piCorePlayer as user `tc`
-     - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>` with password `piCore`
+     - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>`
      - [How to find the IP address of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/)
    - Run  
      `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
-   - Or if you want to run a modified version of the script or an older version, see the [For Developers](#for-developers) section
+   - Or if you want to run a modified version of the script or an older version, see the [For developers and tinkerers](#for-developers-and-tinkerers) section
 3. Open CamillaGUI in the browser:
    - It will be running on port 5000 of piCorePlayer.  
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
@@ -77,13 +77,13 @@ and installs them with convenient default settings:
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
 
-## For developers
+## For developers and tinkerers
 
 In this section it is assumed, that your piCorePlayer is available on [pcp.local](http://pcp.local).
 If this is not the case, replace occurrences of `pcp.local` with the IP-address/hostname of your piCorePlayer.
 
 ### Modifying the installation script
-If you made some changes to the installation script on your local machine and want to run it quickly on the piCorePlayer,  
+If you made some changes to the installation script on your local machine and want to run it quickly on the piCorePlayer, 
 run the following command from the location of the script:  
 ```shell
 scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"
@@ -97,3 +97,15 @@ You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like 
 3. Save and reboot
 
 If you need to access files in your script, make sure to use absolute paths.
+
+### Running CamillaDSP standalone
+
+You can run CamillaDSP standalone. This might be useful, if you want to capture audio from some audio device.
+Although, in this case you won't be able to use any of the Squeezelite/airPlay/Bluetooth audio sources.
+
+1. Go to `Tweaks > Audio Tweaks` and set `Squeezelite` to `no`.
+2. Then go to `Tweaks > User commands` and set one of the commands to  
+   `sudo -u tc sh -c '/usr/local/camilladsp -p 1234 -a 0.0.0.0 -o /tmp/camilladsp.log --statefile /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml'`  
+   or if you want a fixed volume of e.g. -30dB, use this command:  
+   `sudo -u tc sh -c '/usr/local/camilladsp -p 1234 -a 0.0.0.0 -o /tmp/camilladsp.log --statefile /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml -g-30'`
+3. Save and reboot
