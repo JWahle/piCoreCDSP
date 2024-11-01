@@ -51,24 +51,37 @@ If the error persists, post the error message on the piCoreCDSP Thread on
 [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/)
 or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
 
+## How to update
+I don't recommend trying to update, because it generally is not straight forward and involves some troubleshooting.
+Just do a fresh install and enjoy life.
+
 ## How to uninstall
+
+### piCoreCDSP
 If you want to uninstall without setting up piCorePlayer again,
 reconfigure your audio output device in the pCP UI,
 then uninstall the piCoreCDSP Extension
 (In `Main Page > Extensions > Installed >` select `piCoreCDSP.tcz`, press `Delete`)
 and reboot.
-Afterward SSH onto the piCorePlayer and remove the `pcm.camilladsp` entry from `/etc/asound.conf`.
+
+### piCoreCDSP installation script
+`rm -f /home/tc/install_cdsp.sh`
+
+### CamillaDSP sound device
+SSH onto the piCorePlayer and remove the `pcm.camilladsp` entry from `/etc/asound.conf`.
 This is easy to do with the Nano text editor:
 ```shell
 tce-load -wil -t /tmp nano
 nano /etc/asound.conf
 ```
+
+### CamillaDSP configuration files and filters
 Lastly, remove the installation script and CamillaDSP configs + filters and save your changes:
-```shell
-rm -f /home/tc/install_cdsp.sh
-rm -rf /etc/sysconfig/tcedir/camilladsp/
-pcp backup
-```
+`rm -rf /etc/sysconfig/tcedir/camilladsp/`
+
+### Save the changes
+If you just restart, some changes will not be persistent. To make all your changes persistent, run:
+`pcp backup`
 
 ## Implementation
 The `install_cdsp.sh` script downloads the following projects including dependencies
