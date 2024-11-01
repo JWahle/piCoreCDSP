@@ -56,11 +56,12 @@ I don't recommend trying to update, because it generally is not straight forward
 Just do a fresh install and enjoy life.
 
 ## How to uninstall
+SSH onto the piCorePlayer and enter the following commands depending on what you want to uninstall.
 
-### piCoreCDSP
+### piCoreCDSP extension
 If you want to uninstall without setting up piCorePlayer again,
-reconfigure your audio output device in the pCP UI,
-then uninstall the piCoreCDSP Extension
+you have to reconfigure your audio output device in the pCP UI.
+Then uninstall the piCoreCDSP Extension
 (In `Main Page > Extensions > Installed >` select `piCoreCDSP.tcz`, press `Delete`)
 and reboot.
 
@@ -68,7 +69,7 @@ and reboot.
 `rm -f /home/tc/install_cdsp.sh`
 
 ### CamillaDSP sound device
-SSH onto the piCorePlayer and remove the `pcm.camilladsp` entry from `/etc/asound.conf`.
+Remove the `pcm.camilladsp` entry from `/etc/asound.conf`.
 This is easy to do with the Nano text editor:
 ```shell
 tce-load -wil -t /tmp nano
@@ -76,7 +77,6 @@ nano /etc/asound.conf
 ```
 
 ### CamillaDSP configuration files and filters
-Lastly, remove the installation script and CamillaDSP configs + filters and save your changes:
 `rm -rf /etc/sysconfig/tcedir/camilladsp/`
 
 ### Save the changes
