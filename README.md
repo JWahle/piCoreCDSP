@@ -90,6 +90,14 @@ and installs them with convenient default settings:
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
 
+### Audio Architecture
+```mermaid
+graph TD;
+    A(Audio Source<br>SqueezeLite/AirPlay/Bluetooth) -- Opens audio stream --> B(CamillaDSP Alsa Plugin);
+    B -- Starts and then sends audio to stdin of CamillaDSP.<br>This will show the green meters in CamillaGUI. --> C(CamillaDSP);
+    C --> O(Audio output<br>Configured in your CDSP config);
+```
+
 ## For developers and tinkerers
 
 In this section it is assumed, that your piCorePlayer is available on [pcp.local](http://pcp.local).
