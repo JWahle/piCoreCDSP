@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
 ALSA_CDSP_VERSION="a2a16745581cc3da7b28df14f4fdf169d6452f89"
-CDSP_VERSION="v3.0.0-beta.1"
-CAMILLA_GUI_VERSION="v3.0.0-beta.2"
-PYCDSP_VERSION="v2.0.2"
-PYCDSP_PLOT_VERSION="v2.0.0"
+CDSP_VERSION="v3.0.0-beta.2"
+CAMILLA_GUI_VERSION="v3.0.0-beta.4"
+PYCDSP_VERSION="next30"
+PYCDSP_PLOT_VERSION="next30"
 
 ### Exit, if not enough free space
 requiredSpaceInMB=100
