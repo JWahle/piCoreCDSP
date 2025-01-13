@@ -52,8 +52,13 @@ If the error persists, post the error message on the piCoreCDSP Thread on
 or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
 
 ## How to update
-I don't recommend trying to update, because it generally is not straight forward and involves some troubleshooting.
-Just do a fresh install and enjoy life.
+You can update to the current version, if you have PCP 9.x installed.
+For older versions, updating is difficult and not recommended - just do a fresh install and enjoy life.
+
+To update, you have to:
+- [remove the piCoreCDSP extension](#picorecdsp-extension)
+- [remove the installation script](#picorecdsp-installation-script)
+- [install the new version](#how-to-install)
 
 ## How to uninstall
 SSH onto the piCorePlayer and enter the following commands depending on what you want to uninstall.
