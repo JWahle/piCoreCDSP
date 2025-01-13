@@ -1,5 +1,5 @@
 # piCoreCDSP
-The goal of this project is to provide an easy way to install CamillaDSP 3.0.0 including GUI
+The goal of this project is to provide an easy way to install [CamillaDSP](https://github.com/HEnquist/camilladsp) 3.0.0 including [GUI](https://github.com/HEnquist/camillagui-backend)
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
@@ -86,7 +86,7 @@ If you just restart, some changes will not be persistent. To make all your chang
 ## Implementation
 The `install_cdsp.sh` script downloads the following projects including dependencies
 and installs them with convenient default settings:
-- https://github.com/spfenwick/alsa_cdsp.git (forked from https://github.com/scripple/alsa_cdsp)
+- https://github.com/spfenwick/alsa_cdsp (forked from https://github.com/scripple/alsa_cdsp)
 - https://github.com/HEnquist/camilladsp
 - https://github.com/HEnquist/camillagui-backend
 
