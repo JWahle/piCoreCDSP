@@ -76,13 +76,13 @@ devices:
   playback:
     type: Alsa
     channels: 2
-    device: "plughw:Headphones"
+    device:  "null"
     format: S16LE
 ' > default_config.yml
-/bin/cp default_config.yml configs/Headphones.yml
+/bin/cp default_config.yml configs/Null.yml
 
 echo '
-config_path: /mnt/mmcblk0p2/tce/camilladsp/configs/Headphones.yml
+config_path: /mnt/mmcblk0p2/tce/camilladsp/configs/Null.yml
 mute:
 - false
 - false
