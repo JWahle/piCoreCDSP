@@ -49,7 +49,7 @@ There are a couple of things, you can try to work around this:
 
 If the error persists, post the error message on the piCoreCDSP Thread on
 [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/)
-or [slimdevices.com](https://forums.slimdevices.com/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
+or [lyrion.org](https://forums.lyrion.org/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
 
 ## How to update
 You can update to the current version, if you have PCP 9.x installed.
@@ -59,6 +59,15 @@ To update, you have to:
 - [remove the piCoreCDSP extension](#picorecdsp-extension)
 - [remove the installation script](#picorecdsp-installation-script)
 - [install the new version](#how-to-install)
+- Update your CamillaDSP config files in the GUI at [pcp.local:5000](http://pcp.local:5000)
+  - go to the `Files` tab
+  - press "New config from default"
+  - press "Import config"
+  - select the config you want to update
+  - select all checkboxes
+  - press "Import"
+  - save the config
+  - the newly saved config should show as 
 
 ## How to uninstall
 SSH onto the piCorePlayer and enter the following commands depending on what you want to uninstall.
