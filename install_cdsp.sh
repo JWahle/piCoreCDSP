@@ -15,19 +15,19 @@ else
     use32bit=true
 fi
 
+### Abort, if piCoreCDSP extension is already installed
+if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
+    >&2 echo "Uninstall the piCoreCDSP Extension and reboot, before installing it again"
+    >&2 echo "In Main Page > Extensions > Installed > select 'piCoreCDSP.tcz' and press 'Delete'"
+    exit 1
+fi
+
 ### Exit, if not enough free space
 requiredSpaceInMB=100
 availableSpaceInMB=$(/bin/df -m /dev/mmcblk0p2 | awk 'NR==2 { print $4 }')
 if [[ $availableSpaceInMB -le $requiredSpaceInMB ]]; then
     >&2 echo "Not enough free space"
     >&2 echo "Increase SD-Card size: Main Page > Additional functions > Resize FS"
-    exit 1
-fi
-
-### Abort, if piCoreCDSP extension is already installed
-if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
-    >&2 echo "Uninstall the piCoreCDSP Extension and reboot, before installing it again"
-    >&2 echo "In Main Page > Extensions > Installed > select 'piCoreCDSP.tcz' and press 'Delete'"
     exit 1
 fi
 
