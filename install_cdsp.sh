@@ -22,7 +22,19 @@ if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
     exit 1
 fi
 
-### Exit, if not enough free space
+### Abort, if not enough free RAM
+requiredRamPlusSwapInMB=500 # find experimentally by filling ram in a different terminal with: head -c 100m /dev/zero | tail | sleep infinity
+availableRamInKB=$(grep MemFree /proc/meminfo | awk '{print $2}')
+availableSwapInKB=$(grep SwapFree /proc/meminfo | awk '{print $2}')
+availableRamPlusSwapInMB=$(expr \( $availableRamInKB + $availableSwapInKB \) / 1024)
+echo Free RAM: $availableRamPlusSwapInMB
+if [[ $availableRamPlusSwapInMB -le $requiredRamPlusSwapInMB ]]; then
+    >&2 echo "Not enough RAM"
+    >&2 echo "Increase the swap partition size by at least 500MB"
+    exit 1
+fi
+
+### Abort, if not enough free space
 requiredSpaceInMB=100
 availableSpaceInMB=$(/bin/df -m /dev/mmcblk0p2 | awk 'NR==2 { print $4 }')
 if [[ $availableSpaceInMB -le $requiredSpaceInMB ]]; then
