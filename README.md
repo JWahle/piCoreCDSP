@@ -35,6 +35,7 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 
 ## Troubleshooting
 
+### Just try again
 Check, your system meets all the requirements, reboot and try to install again.
 
 Sometimes, the script's dependencies get corrupted while downloading.  
@@ -50,6 +51,9 @@ There are a couple of things, you can try to work around this:
 If the error persists, post the error message on the piCoreCDSP Thread on
 [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/)
 or [lyrion.org](https://forums.lyrion.org/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
+
+### Enough RAM?
+If you have a Raspberry Pi with less than 1 GB of RAM, you might need to increase the swap partition to make up for it.
 
 ## How to update
 You can update to the current version, if you have PCP 9.x installed.
