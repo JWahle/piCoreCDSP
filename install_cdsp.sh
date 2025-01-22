@@ -78,6 +78,10 @@ devices:
     channels: 2
     device:  "null"
     format: S16LE
+filters: []
+mixers: {}
+processors: []
+pipeline: []
 ' > default_config.yml
 /bin/cp default_config.yml configs/Null.yml
 
