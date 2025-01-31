@@ -145,6 +145,6 @@ Although, in this case you won't be able to use any of the Squeezelite/airPlay/B
 1. Go to `Tweaks > Audio Tweaks` and set `Squeezelite` to `no`.
 2. Then go to `Tweaks > User commands` and set one of the commands to  
    `sudo -u tc sh -c '/usr/local/camilladsp -p 1234 -a 0.0.0.0 -o /tmp/camilladsp.log --statefile /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml'`  
-   or if you want a fixed volume of e.g. -30dB, use this command:  
+   or if you want a fixed volume of e.g. -30dB after boot, use this command:  
    `sudo -u tc sh -c '/usr/local/camilladsp -p 1234 -a 0.0.0.0 -o /tmp/camilladsp.log --statefile /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml --gain=-30'`
 3. Save and reboot
