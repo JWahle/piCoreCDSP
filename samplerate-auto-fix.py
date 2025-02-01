@@ -39,7 +39,8 @@ def get_cdsp_samplerate(cdsp: CamillaClient) -> Optional[int]:
 
 
 def get_alsa_samplerate():
-    stream = os.popen('cat /proc/asound/UltraLitemk5/pcm0p/sub0/hw_params | grep "rate: "')
+    # stream = os.popen('cat /proc/asound/UltraLitemk5/pcm0p/sub0/hw_params | grep "rate: "')
+    stream = os.popen('cat /proc/asound/DAC8PRO/pcm0p/sub0/hw_params | grep "rate: "')
     output = stream.read()
     rate_output_row = re.search('rate: (\d+).*', output)
     rate_string = rate_output_row.group(1)
