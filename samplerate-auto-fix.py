@@ -1,5 +1,6 @@
 import os
 import re
+import subprocess
 import time
 from typing import Optional
 
@@ -11,11 +12,12 @@ cdsp_port = 1234
 
 
 def main():
-    cdsp = CamillaClient(cdsp_ip, cdsp_port)
     print("Monitoring samplerate...")
     while True:
-        connect_to_cdsp_if_necessary(cdsp)
         try:
+            restart_cdsp_if_necessary()
+            cdsp = CamillaClient(cdsp_ip, cdsp_port)
+            connect_to_cdsp_if_necessary(cdsp)
             alsa_samplerate = get_alsa_samplerate()
             cdsp_samplerate = get_cdsp_samplerate(cdsp)
             print("CDSP samplerate: " + str(cdsp_samplerate))
@@ -27,6 +29,21 @@ def main():
         except Exception as e:
             print(e)
         time.sleep(2)
+
+
+def restart_cdsp_if_necessary():
+    stream = os.popen('ps -ef')
+    open_processes = stream.readlines()
+    for s in open_processes:
+        if "/usr/local/camilladsp" in s:
+            print("CamillaDSP is running")
+            return
+    print("Restarting CamillaDSP")
+    subprocess.Popen(
+        "/usr/local/camilladsp -p 1234 -a 0.0.0.0 -o /tmp/camilladsp.log --statefile /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml",
+        shell=True,
+        text=True,
+        close_fds=True)
 
 
 def connect_to_cdsp_if_necessary(cdsp: CamillaClient):
