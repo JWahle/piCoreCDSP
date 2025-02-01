@@ -1,3 +1,6 @@
+Put in Tweaks: `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/piCoreCDSP/samplerate-auto-fix.py'`
+Run per SSH for testing: `source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/piCoreCDSP/samplerate-auto-fix.py`
+
 # piCoreCDSP
 The goal of this project is to provide an easy way to install [CamillaDSP](https://github.com/HEnquist/camilladsp) 3.0.0 including [GUI](https://github.com/HEnquist/camillagui-backend)
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
