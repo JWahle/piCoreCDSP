@@ -1,5 +1,5 @@
 Put in Tweaks:  
-`sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/piCoreCDSP/samplerate-auto-fix.py'`  
+`sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 -u /home/tc/piCoreCDSP/samplerate-auto-fix.py > /tmp/sampleratefix.log'`  
 Run per SSH for testing:  
 `source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/piCoreCDSP/samplerate-auto-fix.py`  
 

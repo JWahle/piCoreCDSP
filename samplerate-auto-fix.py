@@ -6,7 +6,7 @@ from typing import Optional
 
 from camilladsp import CamillaClient, CamillaError
 
-# find available input devices via: ls /dev/input/by-id/
+
 cdsp_ip = "127.0.0.1"
 cdsp_port = 1234
 
