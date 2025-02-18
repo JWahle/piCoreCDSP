@@ -2,9 +2,9 @@
 
 ALSA_CDSP_VERSION="a2a16745581cc3da7b28df14f4fdf169d6452f89" # https://github.com/spfenwick/alsa_cdsp/commits/master/
 CDSP_VERSION="v3.0.0"  # https://github.com/HEnquist/camilladsp/releases/
-CAMILLA_GUI_VERSION="v3.0.1"  # https://github.com/HEnquist/camillagui-backend/releases
+CAMILLA_GUI_VERSION="v3.0.2"  # https://github.com/HEnquist/camillagui-backend/releases
 PYCDSP_VERSION="v3.0.0"  # https://github.com/HEnquist/pycamilladsp/releases
-PYCDSP_PLOT_VERSION="v3.0.1"  # https://github.com/HEnquist/pycamilladsp-plot/releases
+PYCDSP_PLOT_VERSION="v3.0.2"  # https://github.com/HEnquist/pycamilladsp-plot/releases
 
 BUILD_DIR="/tmp/piCoreCDSP"
 
