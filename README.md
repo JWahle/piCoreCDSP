@@ -134,15 +134,6 @@ You can keep downloaded extensions to skip the download when installing again.
 The extensions won't be loaded on startup, so startup time should not be impacted.
 Just call the script with the `-k` or `--keep-downloads` parameter. 
 
-### Running your own python scripts
-You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like this:
-1. Copy your script from your local machine to pCP: `scp <your_script> tc@pcp.local:~`
-2. In `Tweaks > User Commands` set one of the commands to this:  
-   `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/<your_script>'`
-3. Save and reboot
-
-If you need to access files in your script, make sure to use absolute paths.
-
 ### Running CamillaDSP standalone
 
 You can run CamillaDSP standalone. This might be useful, if you want to capture audio from some audio device.
