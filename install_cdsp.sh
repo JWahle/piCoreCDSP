@@ -154,12 +154,14 @@ sudo chmod 664 /etc/asound.conf
 sudo chown root:staff /etc/asound.conf
 
 # Remove old configuration, in case it was installed before
-cat /etc/asound.conf |\
- tr '\n' '\r' |\
-  sed 's|\r\r# For more info about this configuration see: https://github.com/scripple/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |\
-  sed 's|\r\r# For more info about this configuration see: https://github.com/spfenwick/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |\
-   tr '\r' '\n' > /tmp/asound.conf
-cat /tmp/asound.conf > /etc/asound.conf
+asound_conf=$(
+  cat /etc/asound.conf |
+   tr '\n' '\r' |
+    sed 's|\r\r# For more info about this configuration see: https://github.com/scripple/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |
+    sed 's|\r\r# For more info about this configuration see: https://github.com/spfenwick/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |
+     tr '\r' '\n'
+)
+echo "$asound_conf" > /etc/asound.conf
 
 echo '
 # For more info about this configuration see: https://github.com/spfenwick/alsa_cdsp
