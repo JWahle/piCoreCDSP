@@ -229,8 +229,6 @@ sudo mkdir -m 775 /usr/local/camillagui
 sudo chown root:staff /usr/local/camillagui
 cd /usr/local/camillagui
 python3 -m venv environment
-(tr -d '\r' < environment/bin/activate) > environment/bin/activate_new # Create fixed version of the activate script. See https://stackoverflow.com/a/44446239
-mv -f environment/bin/activate_new environment/bin/activate
 source environment/bin/activate # activate custom python environment
 python3 -m pip install --upgrade pip
 pip install websocket_client aiohttp jsonschema setuptools
