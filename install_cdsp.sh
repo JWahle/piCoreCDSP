@@ -197,10 +197,11 @@ pcm.camilladsp {
 ' >> /etc/asound.conf
 
 
-### Set Squeezelite and Shairport output to CamillaDSP
+### Set Squeezelite, Shairport and Bluetooth output to CamillaDSP
 
-sed 's/^OUTPUT=.*/OUTPUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.cfg
-sed 's/^SHAIRPORT_OUT=.*/SHAIRPORT_OUT="camilladsp"/' -i /usr/local/etc/pcp/pcp.cfg
+sed 's|^OUTPUT=.*|OUTPUT="camilladsp"|' -i /usr/local/etc/pcp/pcp.cfg
+sed 's|^SHAIRPORT_OUT=.*|SHAIRPORT_OUT="camilladsp"|' -i /usr/local/etc/pcp/pcp.cfg
+sed 's|^BT_OUT_DEVICE=.*|BT_OUT_DEVICE="camilladsp"|' -i /usr/local/etc/pcp/pcp.cfg
 
 
 ### Downloading CamillaDSP
