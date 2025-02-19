@@ -168,10 +168,12 @@ Just call the script with the `-k` or `--keep-downloads` parameter.
 You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like this:
 1. Copy your script from your local machine to pCP: `scp <your_script> tc@pcp.local:~`
 2. In `Tweaks > User Commands` set one of the commands to this:  
-   `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 /home/tc/<your_script>'`
+   `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 -u /home/tc/<your_script> > /tmp/<your_logfile> 2>&1'`
 3. Save and reboot
 
 If you need to access files in your script, make sure to use absolute paths.
+In case this environment is missing some dependencies for your script,
+you can create an environment with custom dependencies using https://github.com/JWahle/piCorePython.
 
 ### Running CamillaDSP standalone
 

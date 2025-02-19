@@ -3,16 +3,14 @@
 ALSA_CDSP_VERSION="a2a16745581cc3da7b28df14f4fdf169d6452f89" # https://github.com/spfenwick/alsa_cdsp/commits/master/
 CDSP_VERSION="v3.0.0"  # https://github.com/HEnquist/camilladsp/releases/
 CAMILLA_GUI_VERSION="v3.0.2"  # https://github.com/HEnquist/camillagui-backend/releases
-PYCDSP_VERSION="v3.0.0"  # https://github.com/HEnquist/pycamilladsp/releases
-PYCDSP_PLOT_VERSION="v3.0.2"  # https://github.com/HEnquist/pycamilladsp-plot/releases
 
 BUILD_DIR="/tmp/piCoreCDSP"
 
 ### Decide for 64bit or 32bit installation
 if [ "aarch64" = "$(uname -m)" ]; then
-    use32bit=false
+  architecture="aarch64"
 else
-    use32bit=true
+  architecture="armv7"
 fi
 
 show_usage() {
@@ -223,34 +221,20 @@ sed 's|^BT_OUT_DEVICE=.*|BT_OUT_DEVICE="camilladsp"|' -i /usr/local/etc/pcp/pcp.
 
 mkdir -p ${BUILD_DIR}/usr/local/
 cd ${BUILD_DIR}/usr/local/
-if $use32bit; then
-    CDSP_URL=https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-armv7.tar.gz
-else
-    CDSP_URL=https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-aarch64.tar.gz
-fi
-wget -O camilladsp.tar.gz $CDSP_URL
+wget -O camilladsp.tar.gz "https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-${architecture}.tar.gz"
 tar -xvf camilladsp.tar.gz
 rm -f camilladsp.tar.gz
 
 
 ### Building CamillaGUI
 
-install_if_missing python3.11
-install_temporarily_if_missing python3.11-pip
-$use32bit && install_temporarily_if_missing python3.11-dev
-sudo mkdir -m 775 /usr/local/camillagui
-sudo chown root:staff /usr/local/camillagui
-cd /usr/local/camillagui
-python3 -m venv environment
-source environment/bin/activate # activate custom python environment
-python3 -m pip install --upgrade pip
-pip install websocket_client aiohttp jsonschema setuptools
-pip install git+https://github.com/HEnquist/pycamilladsp.git@${PYCDSP_VERSION}
-pip install git+https://github.com/HEnquist/pycamilladsp-plot.git@${PYCDSP_PLOT_VERSION}
-deactivate # deactivate custom python environment
-wget https://github.com/HEnquist/camillagui-backend/releases/download/${CAMILLA_GUI_VERSION}/camillagui.zip
-unzip camillagui.zip
-rm -f camillagui.zip
+mkdir -p ${BUILD_DIR}/usr/local/
+cd ${BUILD_DIR}/usr/local/
+wget -O camillagui.tar.gz "https://github.com/HEnquist/camillagui-backend/releases/download/${CAMILLA_GUI_VERSION}/bundle_linux_${architecture}.tar.gz"
+tar -xvf camillagui.tar.gz
+rm -f camillagui.tar.gz
+chmod -R 775 camillagui_backend
+sudo chown root:staff camillagui_backend
 echo '
 camilla_host: "0.0.0.0"
 camilla_port: 1234
@@ -268,9 +252,7 @@ on_set_active_config: null
 on_get_active_config: null
 supported_capture_types: ["Stdin", "Alsa"]
 supported_playback_types: ["Alsa"]
-' > config/camillagui.yml
-mkdir -p ${BUILD_DIR}/usr/local/
-sudo mv /usr/local/camillagui ${BUILD_DIR}/usr/local/
+' > camillagui_backend/_internal/config/camillagui.yml
 
 
 ### Creating autorun script
@@ -279,9 +261,7 @@ mkdir -p ${BUILD_DIR}/usr/local/tce.installed/
 cd ${BUILD_DIR}/usr/local/tce.installed/
 echo "#!/bin/sh
 
-sudo -u tc sh -c 'while [ ! -f /usr/local/bin/python3 ]; do sleep 1; done
-source /usr/local/camillagui/environment/bin/activate
-python3 /usr/local/camillagui/main.py &' &" > piCoreCDSP
+/usr/local/camillagui_backend/camillagui_backend &" > piCoreCDSP
 chmod 775 piCoreCDSP
 
 
@@ -291,7 +271,6 @@ cd /tmp
 install_temporarily_if_missing squashfs-tools
 mksquashfs piCoreCDSP piCoreCDSP.tcz
 mv -f piCoreCDSP.tcz /etc/sysconfig/tcedir/optional
-echo "python3.11.tcz" > /etc/sysconfig/tcedir/optional/piCoreCDSP.tcz.dep
 echo piCoreCDSP.tcz >> /etc/sysconfig/tcedir/onboot.lst
 
 
