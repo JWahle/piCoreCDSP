@@ -128,6 +128,11 @@ run the following command from the location of the script:
 scp install_cdsp.sh tc@pcp.local:~ && ssh tc@pcp.local "./install_cdsp.sh"
 ```
 
+### Keeping downloaded extensions to reduce re-installation time
+You can keep downloaded extensions to skip the download when installing again.
+The extensions won't be loaded on startup, so startup time should not be impacted.
+Just call the script with the `-k` or `--keep-downloads` parameter. 
+
 ### Running your own python scripts
 You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like this:
 1. Copy your script from your local machine to pCP: `scp <your_script> tc@pcp.local:~`

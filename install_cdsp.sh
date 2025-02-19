@@ -15,6 +15,48 @@ else
     use32bit=true
 fi
 
+show_usage() {
+  echo "Optional arguments:"
+  echo "-k | --keep-downloads    Keep downloaded extensions"
+}
+
+keepDownloadedExtensions=false
+if [ $# -gt 0 ]; then
+  for parameter in "$@"
+  do
+      case "${parameter}" in
+          -k|--keep-downloads) keepDownloadedExtensions=true;;
+          *) show_usage; exit 1;;
+      esac
+  done
+fi
+
+$keepDownloadedExtensions && echo "Keeping downloaded extensions."
+
+# Installs a module from the piCorePlayer repository - if not already installed.
+# Call like this: install_if_missing module_name
+install_if_missing(){
+  if tce-status -u | grep -q "$1" ; then
+    pcp-load -il "$1"
+  elif ! tce-status -i | grep -q "$1" ; then
+    pcp-load -wil "$1"
+  fi
+}
+
+# Installs a module from the piCorePlayer repository, at least until the next reboot - if not already installed.
+# Call like this: install_temporarily_if_missing module_name
+install_temporarily_if_missing(){
+  if tce-status -u | grep -q "$1" ; then
+    pcp-load -il "$1"
+  elif ! tce-status -i | grep -q "$1" ; then
+    if $keepDownloadedExtensions; then
+        pcp-load -wil "$1"
+      else
+        pcp-load -wil -t /tmp "$1" # Downloads to /tmp/optional and loads extensions temporarily
+    fi
+  fi
+}
+
 ### Abort, if piCoreCDSP extension is already installed
 if [ -f "/etc/sysconfig/tcedir/optional/piCoreCDSP.tcz" ]; then
     >&2 echo "Uninstall the piCoreCDSP Extension and reboot, before installing it again"
@@ -37,22 +79,6 @@ if [ -d $BUILD_DIR ]; then
     exit 1
 fi
 mkdir -p $BUILD_DIR
-
-# Installs a module from the piCorePlayer repository - if not already installed.
-# Call like this: install_if_missing module_name
-install_if_missing(){
-  if ! tce-status -i | grep -q "$1" ; then
-    pcp-load -wil "$1"
-  fi
-}
-
-# Installs a module from the piCorePlayer repository, at least until the next reboot - if not already installed.
-# Call like this: install_temporarily_if_missing module_name
-install_temporarily_if_missing(){
-  if ! tce-status -i | grep -q "$1" ; then
-    pcp-load -wil -t /tmp "$1" # Downloads to /tmp/optional and loads extensions temporarily
-  fi
-}
 
 set -v
 
