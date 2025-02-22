@@ -4,8 +4,7 @@ import subprocess
 import time
 from typing import Optional
 
-from camilladsp import CamillaClient, CamillaError
-
+from camilladsp import CamillaClient, CamillaError, ProcessingState
 
 cdsp_ip = "127.0.0.1"
 cdsp_port = 1234
@@ -17,13 +16,12 @@ def main():
         try:
             cdsp = CamillaClient(cdsp_ip, cdsp_port)
             connect_to_cdsp_if_necessary(cdsp)
-            alsa_samplerate = get_alsa_samplerate()
             cdsp_samplerate = get_cdsp_samplerate(cdsp)
+            state = cdsp.general.state()
             print("CDSP samplerate: " + str(cdsp_samplerate))
-            print("ALSA samplerate: " + str(alsa_samplerate))
-            print("CDSP state: " + str(cdsp.general.state()))
-            # if alsa_samplerate != cdsp_samplerate:
-            #     switch_samplerate(cdsp)
+            print("CDSP state: " + str(state))
+            if ProcessingState.STALLED == state:
+                switch_samplerate(cdsp)
         except CamillaError:
             print("Could not connect to CamillaDSP")
         except Exception as e:
