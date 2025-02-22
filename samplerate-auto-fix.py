@@ -15,15 +15,15 @@ def main():
     print("Monitoring samplerate...")
     while True:
         try:
-            restart_cdsp_if_necessary()
             cdsp = CamillaClient(cdsp_ip, cdsp_port)
             connect_to_cdsp_if_necessary(cdsp)
             alsa_samplerate = get_alsa_samplerate()
             cdsp_samplerate = get_cdsp_samplerate(cdsp)
             print("CDSP samplerate: " + str(cdsp_samplerate))
             print("ALSA samplerate: " + str(alsa_samplerate))
-            if alsa_samplerate != cdsp_samplerate:
-                apply_alsa_samplerate(cdsp, alsa_samplerate)
+            print("CDSP state: " + str(cdsp.general.state()))
+            # if alsa_samplerate != cdsp_samplerate:
+            #     switch_samplerate(cdsp)
         except CamillaError:
             print("Could not connect to CamillaDSP")
         except Exception as e:
@@ -64,11 +64,13 @@ def get_alsa_samplerate():
     return int(rate_string)
 
 
-def apply_alsa_samplerate(cdsp: CamillaClient, samplerate: int):
+def switch_samplerate(cdsp: CamillaClient):
     config = cdsp.config.active()
-    config['devices']['capture_samplerate'] = samplerate
+    old_samplerate = int(config['devices']['samplerate'])
+    new_samplerate = 44800 if old_samplerate == 44100 else 44100
+    config['devices']['samplerate'] = new_samplerate
     cdsp.config.set_active(config)
-    print("Updated config with samplerate " + str(samplerate))
+    print("Updated config with samplerate " + str(new_samplerate))
 
 
 if __name__ == '__main__':
