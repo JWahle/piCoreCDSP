@@ -21,6 +21,7 @@ def main():
             print("CDSP samplerate: " + str(cdsp_samplerate))
             print("CDSP state: " + str(state))
             if ProcessingState.STALLED == state:
+                print("CDSP stalled, trying to switch samplerate")
                 switch_samplerate(cdsp)
         except CamillaError:
             print("Could not connect to CamillaDSP")
@@ -66,6 +67,7 @@ def switch_samplerate(cdsp: CamillaClient):
     config = cdsp.config.active()
     old_samplerate = int(config['devices']['samplerate'])
     new_samplerate = 44800 if old_samplerate == 44100 else 44100
+    print("Trying to switch from " + str(old_samplerate) + " to " + str(new_samplerate))
     config['devices']['samplerate'] = new_samplerate
     cdsp.config.set_active(config)
     print("Updated config with samplerate " + str(new_samplerate))
