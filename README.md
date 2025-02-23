@@ -18,7 +18,8 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 3. Open CamillaGUI in the browser:
    - It will be running on port 5000 of piCorePlayer.  
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
-   - Under `Playback device` enter the settings for your DAC (by default, the Raspi headphone output is used)
+   - Under `Playback device` enter the settings for your DAC
+     (by default a dummy output `null` is used, so you can see that CamillaDSP is technically working)
      - These HAVE TO BE CORRECT, otherwise CamillaDSP and Squeezelite won't start!
        - `device`: The Alsa device name of the DAC
          - A list of available devices can be found in `Squeezelite settings > Output setting`
