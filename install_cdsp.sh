@@ -50,9 +50,9 @@ install_temporarily_if_missing(){
     pcp-load -il "$1"
   elif ! tce-status -i | grep -q "$1" ; then
     if $keepDownloadedExtensions; then
-        pcp-load -wil "$1"
-      else
-        pcp-load -wil -t /tmp "$1" # Downloads to /tmp/optional and loads extensions temporarily
+      pcp-load -wil "$1"
+    else
+      pcp-load -wil -t /tmp "$1" # Downloads to /tmp/optional and loads extensions temporarily
     fi
   fi
 }
