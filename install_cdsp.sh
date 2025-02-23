@@ -5,6 +5,7 @@ CDSP_VERSION="v3.0.0"  # https://github.com/HEnquist/camilladsp/releases/
 CAMILLA_GUI_VERSION="v3.0.2"  # https://github.com/HEnquist/camillagui-backend/releases
 
 BUILD_DIR="/tmp/piCoreCDSP"
+CACHE_DIR="/mnt/mmcblk0p2/tce/piCoreCDSP-cache"
 
 ### Decide for 64bit or 32bit installation
 if [ "aarch64" = "$(uname -m)" ]; then
@@ -15,21 +16,21 @@ fi
 
 show_usage() {
   echo "Optional arguments:"
-  echo "-k | --keep-downloads    Keep downloaded extensions"
+  echo "-k | --keep-downloads    Keep downloads"
 }
 
-keepDownloadedExtensions=false
+keepDownloads=false
 if [ $# -gt 0 ]; then
   for parameter in "$@"
   do
       case "${parameter}" in
-          -k|--keep-downloads) keepDownloadedExtensions=true;;
+          -k|--keep-downloads) keepDownloads=true;;
           *) show_usage; exit 1;;
       esac
   done
 fi
 
-$keepDownloadedExtensions && echo "Keeping downloaded extensions."
+$keepDownloads && echo "Keeping downloads."
 
 # Installs a module from the piCorePlayer repository - if not already installed.
 # Call like this: install_if_missing module_name
@@ -47,12 +48,36 @@ install_temporarily_if_missing(){
   if tce-status -u | grep -q "$1" ; then
     pcp-load -il "$1"
   elif ! tce-status -i | grep -q "$1" ; then
-    if $keepDownloadedExtensions; then
+    if $keepDownloads; then
       pcp-load -wil "$1"
     else
       pcp-load -wil -t /tmp "$1" # Downloads to /tmp/optional and loads extensions temporarily
     fi
   fi
+}
+
+# Call like this: download_and_extract_tar_gz localFileName URL
+download_and_extract_tar_gz() {
+  localFileName=$1
+  url=$2
+  echo "Downloading $url as $localFileName"
+  if $keepDownloads; then
+    lastDir=$(pwd)
+    mkdir -p "$CACHE_DIR"
+    cd "$CACHE_DIR"
+    if [ ! -f "$localFileName" ]; then
+      wget -O "$localFileName" "$url"
+    else
+      echo "Already downloaded $CACHE_DIR/$localFileName"
+    fi
+    cd "$lastDir"
+    echo "Changed back to $lastDir"
+    ln -s -T "$CACHE_DIR/$localFileName" "$localFileName"
+  else
+    wget -O "$localFileName" "$url"
+  fi
+  tar -xvf "$localFileName"
+  rm -f "$localFileName"
 }
 
 ### Abort, if piCoreCDSP extension is already installed
@@ -221,18 +246,18 @@ sed 's|^BT_OUT_DEVICE=.*|BT_OUT_DEVICE="camilladsp"|' -i /usr/local/etc/pcp/pcp.
 
 mkdir -p ${BUILD_DIR}/usr/local/
 cd ${BUILD_DIR}/usr/local/
-wget -O camilladsp.tar.gz "https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-${architecture}.tar.gz"
-tar -xvf camilladsp.tar.gz
-rm -f camilladsp.tar.gz
+download_and_extract_tar_gz \
+  "camilladsp-${CDSP_VERSION}-${architecture}.tar.gz" \
+  "https://github.com/HEnquist/camilladsp/releases/download/${CDSP_VERSION}/camilladsp-linux-${architecture}.tar.gz"
 
 
 ### Building CamillaGUI
 
 mkdir -p ${BUILD_DIR}/usr/local/
 cd ${BUILD_DIR}/usr/local/
-wget -O camillagui.tar.gz "https://github.com/HEnquist/camillagui-backend/releases/download/${CAMILLA_GUI_VERSION}/bundle_linux_${architecture}.tar.gz"
-tar -xvf camillagui.tar.gz
-rm -f camillagui.tar.gz
+download_and_extract_tar_gz \
+  "camillagui-${CAMILLA_GUI_VERSION}-${architecture}.tar.gz" \
+  "https://github.com/HEnquist/camillagui-backend/releases/download/${CAMILLA_GUI_VERSION}/bundle_linux_${architecture}.tar.gz"
 chmod -R 775 camillagui_backend
 sudo chown root:staff camillagui_backend
 echo '
