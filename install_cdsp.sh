@@ -157,8 +157,7 @@ sudo chown root:staff /etc/asound.conf
 asound_conf=$(
   cat /etc/asound.conf |
    tr '\n' '\r' |
-    sed 's|\r\r# For more info about this configuration see: https://github.com/scripple/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |
-    sed 's|\r\r# For more info about this configuration see: https://github.com/spfenwick/alsa_cdsp\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |
+    sed 's|\r\r# For more info about this configuration see: .*\rpcm.camilladsp.*\r}\r# pcm.camilladsp||' |
      tr '\r' '\n'
 )
 echo "$asound_conf" > /etc/asound.conf
