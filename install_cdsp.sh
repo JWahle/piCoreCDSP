@@ -202,6 +202,7 @@ pcm.camilladsp {
 
 sed 's|^OUTPUT=.*|OUTPUT="camilladsp"|' -i /usr/local/etc/pcp/pcp.cfg
 sed 's|^SHAIRPORT_OUT=.*|SHAIRPORT_OUT="camilladsp"|' -i /usr/local/etc/pcp/pcp.cfg
+sed 's|^SHAIRPORT_CONTROL=.*|SHAIRPORT_CONTROL=""|' -i /usr/local/etc/pcp/pcp.cfg
 sed 's|^BT_OUT_DEVICE=.*|BT_OUT_DEVICE="camilladsp"|' -i /usr/local/etc/pcp/pcp.cfg
 
 
