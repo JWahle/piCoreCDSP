@@ -7,15 +7,17 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 - on an armv7 or arch64 compatible device (Raspi 2/3/4/5)
 
 ## How to install
-1. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
-2. Run `install_cdsp.sh` on piCorePlayer from a terminal:
+1. Select a valid output for your Raspi in `Squeezelite Settings > Audio output device settings`
+   For most Raspi models `Headphones` works. For the Raspi zero, 400, 5 or compute module you have to use HDMI or your DAC of choice.
+2. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
+3. Run `install_cdsp.sh` on piCorePlayer from a terminal:
    - SSH onto the piCorePlayer as user `tc`
      - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>`
      - [How to find the IP address of your piCorePlayer](https://docs.picoreplayer.org/how-to/determine_your_pcp_ip_address/)
    - Run  
      `wget https://github.com/JWahle/piCoreCDSP/raw/main/install_cdsp.sh && chmod u+x install_cdsp.sh && ./install_cdsp.sh`
    - Or if you want to run a modified version of the script or an older version, see the [For developers and tinkerers](#for-developers-and-tinkerers) section
-3. Open CamillaGUI in the browser:
+4. Open CamillaGUI in the browser:
    - It will be running on port 5000 of piCorePlayer.  
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
    - Under `Playback device` enter the settings for your DAC
@@ -36,7 +38,9 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 
 ## Troubleshooting
 
-### Just try again
+### The script fails with an error
+
+#### Just try again
 Check, your system meets all the requirements, reboot and try to install again.
 
 Sometimes, the script's dependencies get corrupted while downloading.  
@@ -53,8 +57,27 @@ If the error persists, post the error message on the piCoreCDSP Thread on
 [diyaudio.com](https://www.diyaudio.com/community/threads/camilladsp-for-picoreplayer.402255/)
 or [lyrion.org](https://forums.lyrion.org/forum/user-forums/linux-unix/1646681-camilladsp-for-picoreplayer).
 
-### Enough RAM?
-If you have a Raspberry Pi with less than 1 GB of RAM, you might need to increase the swap partition to make up for it.
+#### Enough RAM?
+If you have a Raspberry Pi with less than 1 GB of RAM, you might need to increase the swap partition to at least 512MB.
+
+### Squeezelite doesn't start, even though it is set to auto start
+In `Squeezelite Settings > Audio output device settings` select a valid output for your Raspi.
+**It is irrelevant whether that is the output you are actually using.**
+For most Raspi models `Headphones` works. For the Raspi zero, 400, 5 or compute module you have to use one of the HDMI options or your DAC head of choice.
+Afterward, you have to manually set the audio output back to `camilladsp` for Squeezelite, AirPlay and Bluetooth.
+
+### Squeezelite is running, but CamillaDSP is offline (State: Offline)
+Make sure in `Squeezelite Settings > Change Squeezelite settings` the following is set:  
+`Output setting` is set to `camilladsp`  
+`Close output setting` is empty or set to 0
+
+### The audio is delayed
+There are various buffers, which can be decreased to reduce latency.
+This might reduce stability, so decrease stepwise and try which settings work for your setup.
+`Squeezelite Settings > Change Squeezelite settings > ALSA setting` the first number can be decreased to 0  
+`CamillaDSP > Devices > Buffers > queuelimit` can be reduced to 1  
+`CamillaDSP > Devices > Buffers > chunksize` can be reduced - just keep multiples of 2  
+
 
 ## How to update
 You can update to the current version, if you have PCP 9.x installed.
