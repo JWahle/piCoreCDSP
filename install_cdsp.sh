@@ -109,7 +109,20 @@ mixers: {}
 pipeline: []
 processors: {}
 ' > default_config.yml
+
 /bin/cp default_config.yml configs/Null.yml
+echo "title: 'Null'
+description: 'THIS CONFIGURATION WILL BE OVERWRITTEN WHEN piCoreCDSP IS REINSTALLED/UPDATED.
+
+  DON''T SET UP YOUR CONFIGURATION HERE
+
+
+  This is a minimal configuration to verify that CamillaDSP is working.
+
+  The audio is just discarded, so you can''t hear anything.
+
+  You have to set up the \"Playback device\" in the \"Devices\" tab and apply your changes.'
+" >> configs/Null.yml
 
 echo '
 config_path: /mnt/mmcblk0p2/tce/camilladsp/configs/Null.yml

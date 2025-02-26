@@ -3,12 +3,12 @@ The goal of this project is to provide an easy way to install [CamillaDSP](https
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
-- a fresh piCorePlayer 9.2.0 installation without any modifications
+- a fresh piCorePlayer 10.0.0 or 9.2.0 installation without any modifications
 - on an armv7 or arch64 compatible device (Raspi 2/3/4/5)
 
 ## How to install
-1. Select a valid output for your Raspi in `Squeezelite Settings > Audio output device settings`
-   For most Raspi models `Headphones` works. For the Raspi zero, 400, 5 or compute module you have to use HDMI or your DAC of choice.
+1. Select a valid output for your Raspi in `Squeezelite Settings > Audio output device settings`.
+   Check [here](#squeezelite-doesnt-start-even-though-it-is-set-to-auto-start) for more info.
 2. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
 3. Run `install_cdsp.sh` on piCorePlayer from a terminal:
    - SSH onto the piCorePlayer as user `tc`
@@ -61,10 +61,14 @@ or [lyrion.org](https://forums.lyrion.org/forum/user-forums/linux-unix/1646681-c
 If you have a Raspberry Pi with less than 1 GB of RAM, you might need to increase the swap partition to at least 512MB.
 
 ### Squeezelite doesn't start, even though it is set to auto start
+piCorePlayer has a little special logic to determine whether it will start Squeezelite on boot. Here is how to get it to work.  
 In `Squeezelite Settings > Audio output device settings` select a valid output for your Raspi.
-**It is irrelevant whether that is the output you are actually using.**
-For most Raspi models `Headphones` works. For the Raspi zero, 400, 5 or compute module you have to use one of the HDMI options or your DAC head of choice.
-Afterward, you have to manually set the audio output back to `camilladsp` for Squeezelite, AirPlay and Bluetooth.
+If you have a supported DAC head installed, select that. Otherwise:
+- for Raspi zero, 400, 5 or compute module use one of the HDMI options
+- for the other Raspi models select `Headphones`
+
+**It is irrelevant whether that is the output you are actually using.**  
+If you do this after installing piCoreCDSP, you have to manually set the audio output back to `camilladsp` for Squeezelite, AirPlay and Bluetooth.
 
 ### Squeezelite is running, but CamillaDSP is offline (State: Offline)
 Make sure in `Squeezelite Settings > Change Squeezelite settings` the following is set:  
@@ -79,9 +83,9 @@ This might reduce stability, so decrease stepwise and try which settings work fo
 `CamillaDSP > Devices > Buffers > chunksize` can be reduced - just keep multiples of 2  
 
 
-## How to update
+## How to update to CamillaDSP 3.0.0
 You can update to the current version, if you have PCP 9.x installed.
-For older versions, updating is difficult and not recommended - just do a fresh install and enjoy life.
+For older PCP versions, updating is difficult and not recommended - just do a fresh install and enjoy life.
 
 To update, you have to:
 - [remove the piCoreCDSP extension](#picorecdsp-extension)
@@ -95,7 +99,10 @@ To update, you have to:
   - select all checkboxes
   - press "Import"
   - save the config
-  - the newly saved config should show as 
+  - the newly saved config should show as
+
+### How to update to PCP 10.0.0
+You can do the insitu update, but afterward you have to reinstall piCoreCDSP and activate your old configuration in CamillaDSP.
 
 ## How to uninstall
 SSH onto the piCorePlayer and enter the following commands depending on what you want to uninstall.
