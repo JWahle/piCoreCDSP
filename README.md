@@ -164,19 +164,7 @@ You can keep downloaded extensions to skip the download when installing again.
 The extensions won't be loaded on startup, so startup time should not be impacted.
 Just call the script with the `-k` or `--keep-downloads` parameter. 
 
-### Running your own python scripts
-You can run python scripts requiring `pycamilladsp` or `pycamilladsp-plot` like this:
-1. Copy your script from your local machine to pCP: `scp <your_script> tc@pcp.local:~`
-2. In `Tweaks > User Commands` set one of the commands to this:  
-   `sudo -u tc sh -c 'source /usr/local/camillagui/environment/bin/activate; python3 -u /home/tc/<your_script> > /tmp/<your_logfile> 2>&1'`
-3. Save and reboot
-
-If you need to access files in your script, make sure to use absolute paths.
-In case this environment is missing some dependencies for your script,
-you can create an environment with custom dependencies using https://github.com/JWahle/piCorePython.
-
 ### Running CamillaDSP standalone
-
 You can run CamillaDSP standalone. This might be useful, if you want to capture audio from some audio device.
 Although, in this case you won't be able to use any of the Squeezelite/airPlay/Bluetooth audio sources.
 
@@ -186,3 +174,7 @@ Although, in this case you won't be able to use any of the Squeezelite/airPlay/B
    or if you want a fixed volume of e.g. -30dB after boot, use this command:  
    `sudo -u tc sh -c '/usr/local/camilladsp -p 1234 -a 0.0.0.0 -o /tmp/camilladsp.log --statefile /mnt/mmcblk0p2/tce/camilladsp/camilladsp_statefile.yml --gain=-30'`
 3. Save and reboot
+
+### Running your own python scripts
+It is not possible anymore to reuse the python environment created by this installer.
+Instead, you can create your own environment as described here: https://github.com/JWahle/piCorePython
