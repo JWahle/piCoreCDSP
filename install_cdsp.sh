@@ -90,7 +90,7 @@ fi
 ### Exit, if not enough free space
 requiredSpaceInMB=100
 availableSpaceInMB=$(/bin/df -m /dev/mmcblk0p2 | awk 'NR==2 { print $4 }')
-if [[ $availableSpaceInMB -le $requiredSpaceInMB ]]; then
+if [ "$availableSpaceInMB" -le $requiredSpaceInMB ]; then
     >&2 echo "Not enough free space"
     >&2 echo "Increase SD-Card size: Main Page > Additional functions > Resize FS"
     exit 1
