@@ -1,0 +1,102 @@
+2025-02-13 19:58:11.679989 INFO  [src/bin.rs:781] CamillaDSP version 3.0.0
+2025-02-13 19:58:11.680007 INFO  [src/bin.rs:782] Running on linux, aarch64
+2025-02-13 19:58:11.738081 WARN  [src/audiodevice.rs:530] Resampling is disabled and capture_samplerate is different than samplerate, ignoring capture_samplerate.
+2025-02-13 19:58:11.820372 INFO  [src/alsadevice.rs:117] PB: Starting playback from Prepared state
+2025-02-13 19:58:34.497709 WARN  [src/alsadevice.rs:237] Prepare capture device
+2025-02-13 19:58:34.537845 INFO  [src/alsadevice.rs:970] Capture device is stalled, processing is stalled
+2025-02-13 19:58:43.916705 INFO  [src/alsadevice.rs:117] PB: Starting playback from Prepared state
+2025-02-13 19:59:48.038428 WARN  [src/alsadevice.rs:122] PB: device is in an unexpected state: SND_PCM_STATE_PAUSED, Paused
+2025-02-13 19:59:48.045367 WARN  [src/alsadevice.rs:122] PB: device is in an unexpected state: SND_PCM_STATE_PAUSED, Paused
+2025-02-13 19:59:48.051347 WARN  [src/alsadevice.rs:122] PB: device is in an unexpected state: SND_PCM_STATE_PAUSED, Paused
+2025-02-13 19:59:48.057324 WARN  [src/alsadevice.rs:122] PB: device is in an unexpected state: SND_PCM_STATE_PAUSED, Paused
+2025-02-13 19:59:48.068403 INFO  [src/alsadevice.rs:556] PB: device stalled
+2025-02-13 19:59:48.077331 INFO  [src/alsadevice.rs:547] PB: device resumed normal operation
+2025-02-13 19:59:52.191192 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.55043175402 Hz
+2025-02-13 19:59:53.196208 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37944582895 Hz
+2025-02-13 19:59:54.200218 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.39843294087 Hz
+2025-02-13 19:59:55.205233 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.43841730468 Hz
+2025-02-13 19:59:56.210249 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.42293827026 Hz
+2025-02-13 19:59:57.215268 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.32123056837 Hz
+2025-02-13 19:59:58.220284 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37872957728 Hz
+2025-02-13 19:59:59.224301 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.18946782194 Hz
+2025-02-13 20:00:00.229316 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.424410568645 Hz
+2025-02-13 20:00:01.234334 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.33304869027 Hz
+2025-02-13 20:00:02.239351 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.38091812414 Hz
+2025-02-13 20:00:03.244367 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.40232610422 Hz
+2025-02-13 20:00:04.248385 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.16506677114 Hz
+2025-02-13 20:00:05.253401 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.40451465366 Hz
+2025-02-13 20:00:06.258418 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35441682739 Hz
+2025-02-13 20:00:07.263436 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.34188244251 Hz
+2025-02-13 20:00:08.268453 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.345583069604 Hz
+2025-02-13 20:00:09.272469 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.23372470567 Hz
+2025-02-13 20:00:10.277487 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35143244933 Hz
+2025-02-13 20:00:11.282502 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.43396061488 Hz
+2025-02-13 20:00:12.287519 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.351472241025 Hz
+2025-02-13 20:00:13.292535 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.39194044559 Hz
+2025-02-13 20:00:14.296552 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.22044763028 Hz
+2025-02-13 20:00:15.301570 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.318285986905 Hz
+2025-02-13 20:00:16.306586 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.41553698811 Hz
+2025-02-13 20:00:17.311605 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35143244933 Hz
+2025-02-13 20:00:18.316621 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35513307819 Hz
+2025-02-13 20:00:19.320637 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.21008115111 Hz
+2025-02-13 20:00:20.325658 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.23794682998 Hz
+2025-02-13 20:00:21.330671 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.50984385263 Hz
+2025-02-13 20:00:22.335688 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.406703203334 Hz
+2025-02-13 20:00:23.340705 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.337425774225 Hz
+2025-02-13 20:00:24.344721 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.19975454835 Hz
+2025-02-13 20:00:25.349737 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.409647797824 Hz
+2025-02-13 20:00:26.354755 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35879391602 Hz
+2025-02-13 20:00:27.359772 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.34407098534 Hz
+2025-02-13 20:00:28.364790 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.38163437589 Hz
+2025-02-13 20:00:29.368805 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.20637314256 Hz
+2025-02-13 20:00:30.373823 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37280060609 Hz
+2025-02-13 20:00:31.378841 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.29321727031 Hz
+2025-02-13 20:00:32.383856 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.45827346148 Hz
+2025-02-13 20:00:33.388872 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.40304235673 Hz
+2025-02-13 20:00:34.392889 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.181294264024 Hz
+2025-02-13 20:00:35.397906 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.38529521858 Hz
+2025-02-13 20:00:36.402923 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.34403119365 Hz
+2025-02-13 20:00:37.407940 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37204456291 Hz
+2025-02-13 20:00:38.412955 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.417009285964 Hz
+2025-02-13 20:00:39.416973 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.17240303165 Hz
+2025-02-13 20:00:40.421991 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.3749891523 Hz
+2025-02-13 20:00:41.427007 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.36909997395 Hz
+2025-02-13 20:00:42.432023 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.40813570871 Hz
+2025-02-13 20:00:43.437041 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35143244933 Hz
+2025-02-13 20:00:44.441057 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.22188298936 Hz
+2025-02-13 20:00:45.446074 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.34184265082 Hz
+2025-02-13 20:00:46.451092 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37570540383 Hz
+2025-02-13 20:00:47.456112 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.233490184866 Hz
+2025-02-13 20:00:48.461124 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.52456690538 Hz
+2025-02-13 20:00:49.465141 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.235877745756 Hz
+2025-02-13 20:00:50.470158 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.32930827383 Hz
+2025-02-13 20:00:51.475178 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.290988941466 Hz
+2025-02-13 20:00:52.480192 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.48183029033 Hz
+2025-02-13 20:00:53.485209 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35139265762 Hz
+2025-02-13 20:00:54.489226 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.19895712751 Hz
+2025-02-13 20:00:55.494243 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37570540383 Hz
+2025-02-13 20:00:56.499259 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.397113378334 Hz
+2025-02-13 20:00:57.504278 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.32930827383 Hz
+2025-02-13 20:00:58.509294 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.40224652061 Hz
+2025-02-13 20:00:59.513309 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.20418023459 Hz
+2025-02-13 20:01:00.518325 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.42361473167 Hz
+2025-02-13 20:01:01.523343 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35067640695 Hz
+2025-02-13 20:01:02.528359 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35067640695 Hz
+2025-02-13 20:01:03.533380 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.230545616316 Hz
+2025-02-13 20:01:04.537393 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.3688084839 Hz
+2025-02-13 20:01:05.542410 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.38012228889 Hz
+2025-02-13 20:01:06.547426 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.404435070035 Hz
+2025-02-13 20:01:07.552445 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.33221306527 Hz
+2025-02-13 20:01:08.557460 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.36909997395 Hz
+2025-02-13 20:01:09.561477 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.21227405971 Hz
+2025-02-13 20:01:10.566494 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.3734770658 Hz
+2025-02-13 20:01:11.571511 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.36762767963 Hz
+2025-02-13 20:01:12.576530 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37864999376 Hz
+2025-02-13 20:01:13.581546 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.37864999376 Hz
+2025-02-13 20:01:14.585563 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 40031.20118990594 Hz
+2025-02-13 20:01:15.590577 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.42357493982 Hz
+2025-02-13 20:01:16.595594 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.33074077366 Hz
+2025-02-13 20:01:17.600610 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.415497196285 Hz
+2025-02-13 20:01:18.605628 WARN  [src/alsadevice.rs:950] sample rate change detected, last rate was 39991.35362099319 Hz
+2025-02-13 20:01:19.302067 WARN  [src/audiodevice.rs:530] Resampling is disabled and capture_samplerate is different than samplerate, ignoring capture_samplerate.
+2025-02-13 20:01:19.375561 INFO  [src/alsadevice.rs:117] PB: Starting playback from Prepared state

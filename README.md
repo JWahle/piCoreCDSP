@@ -3,6 +3,9 @@ Put in Tweaks:
 Run per SSH for testing:  
 `source /usr/local/camillagui/environment/bin/activate; python3 -u /home/tc/piCoreCDSP/samplerate-auto-fix.py`  
 
+Put in Tweaks, if `stop_on_rate_change` can stop the CamillaDSP process reliably:
+`sudo -u tc sh -c '/home/tc/piCoreCDSP/start_with_samplerate.sh'`
+
 # piCoreCDSP
 The goal of this project is to provide an easy way to install [CamillaDSP](https://github.com/HEnquist/camilladsp) 3.0.0 including [GUI](https://github.com/HEnquist/camillagui-backend)
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
