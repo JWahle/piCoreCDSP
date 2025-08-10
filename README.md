@@ -20,8 +20,9 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
 4. Open CamillaGUI in the browser:
    - It will be running on port 5000 of piCorePlayer.  
      Usually can be opened via [pcp.local:5000](http://pcp.local:5000) or `<IP of your piCorePlayer>:5000`
-   - Under `Playback device` enter the settings for your DAC
-     (by default a dummy output `null` is used, so you can see that CamillaDSP is technically working)
+   - By default, the dummy output `null` is used, so you can see that CamillaDSP is technically working.
+     If audio is output to CamillaDSP, you should see channel meters and `State: RUNNING` on the left side in CamillaGUI.
+   - Under `Playback device` enter the settings for your DAC:
      - These HAVE TO BE CORRECT, otherwise CamillaDSP and Squeezelite won't start!
        - `device`: The Alsa device name of the DAC
          - A list of available devices can be found in `Squeezelite settings > Output setting`
@@ -34,7 +35,8 @@ and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.
      - You should see channel meters and `State: RUNNING` on the left
      - If things go wrong, check the CamillaDSP log file via the `Show log file` button for more info.
        After changing the settings, go to the pCP `Main Page` and press `Restart` to restart Squeezelite.
-       If the settings are correct, the channel meters and `State: RUNNING` on the left side should be visible in CamillaGUI.
+       If you output audio to CamillaDSP and the settings are correct,
+       the channel meters and `State: RUNNING` should be visible on the left side in CamillaGUI.
 
 ## Troubleshooting
 
@@ -71,9 +73,12 @@ If you have a supported DAC head installed, select that. Otherwise:
 If you do this after installing piCoreCDSP, you have to manually set the audio output back to `camilladsp` for Squeezelite, AirPlay and Bluetooth.
 
 ### Squeezelite is running, but CamillaDSP is offline (State: Offline)
-Make sure in `Squeezelite Settings > Change Squeezelite settings` the following is set:  
-`Output setting` is set to `camilladsp`  
-`Close output setting` is empty or set to 0
+This happens when no audio is output to CamillaDSP.
+First, check the error log for errors.
+If there are no error messages in the log (`Show log file` button in CamillaGUI),
+make sure in `Squeezelite Settings > Change Squeezelite settings` the following is set:  
+- `Output setting` is set to `camilladsp`  
+- Either play audio or ensure `Close output setting` is empty or set to 0
 
 ### The audio is delayed
 There are various buffers, which can be decreased to reduce latency.
