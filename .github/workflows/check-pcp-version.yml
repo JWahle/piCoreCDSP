@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 0 * * *' # Run daily at midnight
   workflow_dispatch: # Allow manual trigger
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/check-pcp-version.yml'
 
 jobs:
   check-version:
