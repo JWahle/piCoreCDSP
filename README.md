@@ -3,13 +3,14 @@ The goal of this project is to provide an easy way to install [CamillaDSP](https
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
-- a fresh piCorePlayer 10.0.0 or 9.2.0 installation without any modifications
+- a fresh piCorePlayer 11.0.0, 10.0.0 or 9.2.0 installation without any modifications
 - on an armv7 or arch64 compatible device (Raspi 2/3/4/5)
 
 ## How to install
 1. Select a valid output for your Raspi in `Squeezelite Settings > Audio output device settings`.
    Check [here](#squeezelite-doesnt-start-even-though-it-is-set-to-auto-start) for more info.
-2. Increase piCorePlayer SD Card size to at least 200MB via `Main Page > Additional functions > Resize FS`
+2. Increase piCorePlayer SD Card size to at least 300MB  
+   (via the guided setup or `Main Page > Additional functions > Resize FS`)
 3. Run `install_cdsp.sh` on piCorePlayer from a terminal:
    - SSH onto the piCorePlayer as user `tc`
      - Usually `ssh tc@pcp.local` or `ssh tc@<IP of your piCorePlayer>`
@@ -87,8 +88,9 @@ This might reduce stability, so decrease stepwise and try which settings work fo
 `CamillaDSP > Devices > Buffers > queuelimit` can be reduced to 1  
 `CamillaDSP > Devices > Buffers > chunksize` can be reduced - just keep multiples of 2  
 
+## How to update
 
-## How to update to CamillaDSP 3.0.0
+### How to update to CamillaDSP 3.0.0
 You can update to the current version, if you have PCP 9.x installed.
 For older PCP versions, updating is difficult and not recommended - just do a fresh install and enjoy life.
 
@@ -105,6 +107,10 @@ To update, you have to:
   - press "Import"
   - save the config
   - the newly saved config should show as
+
+### How to update to PCP 11.0.0
+You can do the insitu update from PCP 10.0.0, and things should work fine out of the box.
+If there are any issues, reinstall piCoreCDSP and activate your old configuration in CamillaDSP.
 
 ### How to update to PCP 10.0.0
 You can do the insitu update, but afterward you have to reinstall piCoreCDSP and activate your old configuration in CamillaDSP.
