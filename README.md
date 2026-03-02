@@ -3,7 +3,7 @@ The goal of this project is to provide an easy way to install [CamillaDSP](https
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
-- a fresh piCorePlayer 11.0.0, 10.0.0 or 9.2.0 installation without any modifications
+- a fresh piCorePlayer 11.1.0, 10.0.0 or 9.2.0 installation without any modifications
 - on an armv7 or arch64 compatible device (Raspi 2/3/4/5)
 
 ## How to install
