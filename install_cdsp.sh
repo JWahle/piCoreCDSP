@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
-ALSA_CDSP_VERSION="a2a16745581cc3da7b28df14f4fdf169d6452f89" # https://github.com/spfenwick/alsa_cdsp/commits/master/
-CDSP_VERSION="v3.0.1"  # https://github.com/HEnquist/camilladsp/releases/
-CAMILLA_GUI_VERSION="v3.0.3"  # https://github.com/HEnquist/camillagui-backend/releases
+ALSA_CDSP_VERSION="3d1b54d82b95788f4b674554efbbcc165de89afc" # https://github.com/spfenwick/alsa_cdsp/commits/master/
+CDSP_VERSION="v4.0.0"  # https://github.com/HEnquist/camilladsp/releases/
+CAMILLA_GUI_VERSION="v4.0.1"  # https://github.com/HEnquist/camillagui-backend/releases
 
 BUILD_DIR="/tmp/piCoreCDSP"
 CACHE_DIR="/mnt/mmcblk0p2/tce/piCoreCDSP-cache"
@@ -121,12 +121,12 @@ devices:
   capture:
     type: Stdin
     channels: 2
-    format: S16LE
+    format: S16_LE
   playback:
     type: Alsa
     channels: 2
     device:  "null"
-    format: S16LE
+    format: S16_LE
 filters: {}
 mixers: {}
 pipeline: []
