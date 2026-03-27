@@ -90,8 +90,8 @@ This might reduce stability, so decrease stepwise and try which settings work fo
 
 ## How to update
 
-### How to update to CamillaDSP 3.0.0
-You can update to the current version, if you have PCP 9.x installed.
+### How to update to CamillaDSP 4.0.0
+You can update to the current version if you have PCP 9.x or newer installed.
 For older PCP versions, updating is difficult and not recommended - just do a fresh install and enjoy life.
 
 To update, you have to:
@@ -111,9 +111,6 @@ To update, you have to:
 ### How to update to PCP 11.0.0
 You can do the insitu update from PCP 10.0.0, and things should work fine out of the box.
 If there are any issues, reinstall piCoreCDSP and activate your old configuration in CamillaDSP.
-
-### How to update to PCP 10.0.0
-You can do the insitu update, but afterward you have to reinstall piCoreCDSP and activate your old configuration in CamillaDSP.
 
 ## How to uninstall
 SSH onto the piCorePlayer and enter the following commands depending on what you want to uninstall.
