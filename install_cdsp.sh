@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 ALSA_CDSP_VERSION="3d1b54d82b95788f4b674554efbbcc165de89afc" # https://github.com/spfenwick/alsa_cdsp/commits/master/
-CDSP_VERSION="v4.0.0"  # https://github.com/HEnquist/camilladsp/releases/
-CAMILLA_GUI_VERSION="v4.0.1"  # https://github.com/HEnquist/camillagui-backend/releases
+CDSP_VERSION="v4.0.1"  # https://github.com/HEnquist/camilladsp/releases/
+CAMILLA_GUI_VERSION="v4.1.0"  # https://github.com/HEnquist/camillagui-backend/releases
 
 BUILD_DIR="/tmp/piCoreCDSP"
 CACHE_DIR="/mnt/mmcblk0p2/tce/piCoreCDSP-cache"
