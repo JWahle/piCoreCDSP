@@ -1,5 +1,5 @@
 # piCoreCDSP
-The goal of this project is to provide an easy way to install [CamillaDSP](https://github.com/HEnquist/camilladsp) 4.0.1 including [GUI](https://github.com/HEnquist/camillagui-backend) 4.1.0
+The goal of this project is to provide an easy way to install [CamillaDSP](https://github.com/HEnquist/camilladsp) 4.1.3 including [GUI](https://github.com/HEnquist/camillagui-backend) 4.1.0
 and automatic samplerate switching on a [piCorePlayer](https://www.picoreplayer.org/) installation.
 
 ## Requirements
